@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISTST - Indian Society of Thoracic Surgeons & Trust</title>
+    <meta name="description" content="Advancing Thoracic Care Empowering Health">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN for standalone file) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0F4D61',
+                        secondary: '#3AA6B9',
+                        accent: '#2997AA',
+                        lightbg: '#E9F8F9',
+                        dark: '#0F172A',
+                        textgray: '#454F5E'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Slider Transitions */
+        .slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        .slide-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out 0.3s;
+        }
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Dropdown Menu Styles (Desktop) */
+        @media (min-width: 1024px) {
+            .group:hover .dropdown-menu {
+                display: block;
+                animation: fadeUp 0.2s ease-out forwards;
+            }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Nav trigger button: stays highlighted while the submenu (or the
+           padding bridge above it) is hovered, so the menu never closes
+           while the cursor is travelling down to the dropdown card. */
+        .nav-trigger {
+            color: #0F4D61;
+        }
+        .group:hover .nav-trigger {
+            background-color: #E9F8F9;
+            color: #2997AA;
+        }
+
+        /* Dropdown items */
+        .nav-dropdown-link {
+            display: block;
+            padding: 0.65rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #454F5E;
+            border-left: 2px solid transparent;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, padding-left 0.15s ease;
+        }
+        .nav-dropdown-link:hover {
+            background-color: #E9F8F9;
+            color: #0F4D61;
+            border-left-color: #3AA6B9;
+            padding-left: 1.6rem;
+        }
+
+        /* Mobile Menu Transitions */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Number Counter Animation */
+        .counter-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            display: flex;
+        }
+        .marquee-content {
+            display: inline-flex;
+            align-items: center;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="font-sans text-textgray bg-slate-50 overflow-x-hidden">
+
+    <!-- Header / Navigation -->
+    <header id="header-wrapper" class="fixed top-0 w-full z-50 flex flex-col">
+        
+        <!-- Announcement Marquee (At the very top) -->
+        <a href="#events" id="announcement-bar" class="block bg-gradient-to-r from-secondary to-primary text-white marquee-container transition-all duration-500 overflow-hidden hover:opacity-95" style="max-height: 50px; opacity: 1;">
+            <div class="marquee-content gap-4 px-4 py-2.5">
+                <span class="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm shrink-0">
+                    <i class="fa-solid fa-bullhorn text-[10px]"></i>
+                </span>
+                <span class="font-medium text-sm tracking-wide">Join us for the upcoming ISTSCON 2025 Annual Congress!</span>
+                <span class="shrink-0 bg-white text-primary px-3 py-0.5 rounded-full text-xs font-bold transition-colors ml-2 shadow-sm inline-flex items-center">
+                    Register Now <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                </span>
+            </div>
+        </a>
+
+        <!-- Navbar -->
+        <div id="navbar" class="w-full transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div id="nav-container" class="flex justify-between items-center h-20 transition-all duration-300">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="#" class="flex items-center gap-2">
+                            <img src="https://istst.org/wp-content/uploads/2024/12/cropped-ISTST_logo-removebg-preview-107x107.png" onerror="this.src='https://placehold.co/48x48/0F4D61/FFFFFF?text=ISTST'" alt="ISTST Logo" class="h-10 w-auto">
+                            <span class="font-heading font-bold text-primary text-lg hidden sm:block">ISTST</span>
+                        </a>
+                    </div>
+
+                    <!-- Desktop Nav Links -->
+                    <nav class="hidden lg:flex items-center space-x-1">
+
+                        <!-- Organization Dropdown -->
+                        <div class="relative group">
+                            <button class="nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200">
+                                Organization <i class="fa-solid fa-chevron-down ml-1.5 text-[10px] transition-transform duration-200 group-hover:rotate-180 group-hover:text-secondary"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 top-full w-56 pt-3">
+                                <div class="relative bg-white rounded-xl shadow-xl ring-1 ring-black/5 py-2 overflow-hidden">
+                                    <span class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"></span>
+                                    <a href="#" class="nav-dropdown-link">President</a>
+                                    <a href="#" class="nav-dropdown-link">Past President</a>
+                                    <a href="#" class="nav-dropdown-link">Vice Presidents</a>
+                                    <a href="#" class="nav-dropdown-link">Secretary</a>
+                                    <a href="#" class="nav-dropdown-link">Joint Secretary</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Dropdown -->
+                        <div class="relative group">
+                            <button class="nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200">
+                                Gallery <i class="fa-solid fa-chevron-down ml-1.5 text-[10px] transition-transform duration-200 group-hover:rotate-180 group-hover:text-secondary"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 top-full w-52 pt-3">
+                                <div class="relative bg-white rounded-xl shadow-xl ring-1 ring-black/5 py-2 overflow-hidden">
+                                    <span class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"></span>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2020</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2022</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2023</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2024</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Events Dropdown -->
+                        <div class="relative group">
+                            <button class="nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200">
+                                Events <i class="fa-solid fa-chevron-down ml-1.5 text-[10px] transition-transform duration-200 group-hover:rotate-180 group-hover:text-secondary"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 top-full w-52 pt-3">
+                                <div class="relative bg-white rounded-xl shadow-xl ring-1 ring-black/5 py-2 overflow-hidden">
+                                    <span class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"></span>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2020</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2022</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2023</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2024</a>
+                                    <a href="#" class="nav-dropdown-link">ISTSCON 2025</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Member Dropdown -->
+                        <div class="relative group">
+                            <button class="nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200">
+                                Member <i class="fa-solid fa-chevron-down ml-1.5 text-[10px] transition-transform duration-200 group-hover:rotate-180 group-hover:text-secondary"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 top-full w-60 pt-3">
+                                <div class="relative bg-white rounded-xl shadow-xl ring-1 ring-black/5 py-2 overflow-hidden">
+                                    <span class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"></span>
+                                    <a href="#member-cta" class="nav-dropdown-link">How to become a Member</a>
+                                    <a href="#" class="nav-dropdown-link">Member Enrollment</a>
+                                    <a href="#" class="nav-dropdown-link">Members List</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-primary hover:text-secondary focus:outline-none p-2">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-white shadow-2xl z-50 overflow-y-auto lg:hidden">
+            <div class="p-5 flex justify-end">
+                <button id="close-menu-btn" class="text-gray-500 hover:text-primary p-2">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-medium text-primary">
+                <!-- Mobile Dropdown implementations (simplified for UX) -->
+                <div class="mobile-dropdown">
+                    <button class="w-full text-left px-3 py-3 border-b border-gray-100 flex justify-between items-center" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        Organization <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="hidden pl-6 py-2 space-y-2 bg-gray-50">
+                        <a href="#" class="block text-sm text-gray-600 py-1">President</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Past President</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Vice Presidents</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Secretary</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Joint Secretary</a>
+                    </div>
+                </div>
+                <div class="mobile-dropdown">
+                    <button class="w-full text-left px-3 py-3 border-b border-gray-100 flex justify-between items-center" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        Gallery <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="hidden pl-6 py-2 space-y-2 bg-gray-50">
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2020</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2022</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2023</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2024</a>
+                    </div>
+                </div>
+                <div class="mobile-dropdown">
+                    <button class="w-full text-left px-3 py-3 border-b border-gray-100 flex justify-between items-center" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        Events <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="hidden pl-6 py-2 space-y-2 bg-gray-50">
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2020</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2024</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">ISTSCON 2025</a>
+                    </div>
+                </div>
+                <div class="mobile-dropdown">
+                    <button class="w-full text-left px-3 py-3 border-b border-gray-100 flex justify-between items-center" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        Member <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="hidden pl-6 py-2 space-y-2 bg-gray-50">
+                        <a href="#member-cta" class="block text-sm text-gray-600 py-1">How to become a Member</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Member Enrollment</a>
+                        <a href="#" class="block text-sm text-gray-600 py-1">Members List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Overlay background for mobile menu -->
+        <div id="menu-overlay" class="fixed inset-0 bg-black/20 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
+    </header>
+
+    <!-- Hero Slider Section -->
+    <section class="relative h-screen min-h-[600px] w-full bg-dark overflow-hidden">
+        <div id="slider-container" class="relative w-full h-full">
+            
+            <!-- Slide 1 (Based on original hero image) -->
+            <div class="slide active">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" alt="Surgeons operating">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/40"></div>
+                </div>
+                <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
+                    <div class="slide-content max-w-3xl">
+                        <span class="text-secondary font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">Together,</span>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-md">
+                            Advancing Thoracic Care Empowering Health
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl font-light">
+                            Leading the future of thoracic surgery in India through continuous education, research, and innovation.
+                        </p>
+                        <a href="#about" class="inline-flex items-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-secondary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                            Read More <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" alt="Medical conference">
+                    <div class="absolute inset-0 bg-gradient-to-r from-dark/90 to-primary/60"></div>
+                </div>
+                <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
+                    <div class="slide-content max-w-3xl">
+                        <span class="text-secondary font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">Global Knowledge</span>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-md">
+                            Fostering Excellence & Collaboration
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl font-light">
+                            Join our annual congress to engage with global experts and stay updated on the latest advancements.
+                        </p>
+                        <a href="#events" class="inline-flex items-center px-8 py-4 bg-secondary text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                            Explore Events <i class="fa-solid fa-calendar-alt ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" alt="Patient care">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent/90 to-primary/80"></div>
+                </div>
+                <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
+                    <div class="slide-content max-w-3xl">
+                        <span class="text-white font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">Impactful Achievements</span>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-md">
+                            Improving Patient Outcomes Nationwide
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl font-light">
+                            Dedicated to advancing surgical standards and providing innovative solutions to complex thoracic conditions.
+                        </p>
+                        <a href="#member-cta" class="inline-flex items-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-dark hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                            Join ISTST <i class="fa-solid fa-user-plus ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="absolute bottom-10 left-0 right-0 flex justify-center space-x-3 z-20">
+                <button class="slider-dot w-3 h-3 rounded-full bg-white transition-opacity duration-300 opacity-100" data-index="0"></button>
+                <button class="slider-dot w-3 h-3 rounded-full bg-white transition-opacity duration-300 opacity-40 hover:opacity-100" data-index="1"></button>
+                <button class="slider-dot w-3 h-3 rounded-full bg-white transition-opacity duration-300 opacity-40 hover:opacity-100" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 md:py-28 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-heading font-bold text-dark mb-6">About ISTST</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
+                <p class="text-lg text-textgray leading-relaxed">
+                    Indian Society of Thoracic Surgeons & Trust (ISTST) plays a significant role in advancing thoracic surgery in India by fostering education and skills development among young surgeons through their annual congress, ISTSCON.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+                <!-- Mission -->
+                <div class="bg-lightbg p-10 rounded-3xl reveal shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary text-2xl mb-6 shadow-sm">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-primary mb-4">Our Mission</h3>
+                    <p class="text-textgray leading-relaxed mb-4 font-medium">
+                        Empowering Surgeons, Advancing Thoracic Care, and Enhancing Patient Outcomes Through Education, Collaboration, and Innovation in the Field of Thoracic Surgery Across India.
+                    </p>
+                    <p class="text-textgray leading-relaxed text-sm">
+                        Our mission is to advance the field of thoracic surgery by providing surgeons with education, fostering collaboration, and driving innovation, ultimately improving patient care and outcomes across India.
+                    </p>
+                </div>
+
+                <!-- Vision -->
+                <div class="bg-primary text-white p-10 rounded-3xl reveal shadow-lg" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 backdrop-blur-sm border border-white/20">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Our Vision</h3>
+                    <p class="text-gray-200 leading-relaxed mb-4 font-medium">
+                        To Lead the Advancement of Thoracic Surgery in India, Elevating Standards of Care, Inspiring Innovation, and Improving Health Outcomes for Patients Nationwide.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed text-sm">
+                        Our vision is to be the premier organization advancing thoracic surgery in India, driving innovation, fostering excellence, and improving healthcare standards to positively impact patient outcomes across the nation.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Aim & Objectives Strip -->
+            <div class="mt-16 bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm reveal">
+                <h4 class="text-xl font-heading font-bold text-dark mb-4"><span class="text-secondary">Aim and Objectives:</span> Elevating Surgical Standards</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-textgray">
+                    <div class="flex gap-3">
+                        <i class="fa-solid fa-check text-secondary mt-1"></i>
+                        <p><strong>Education & Training:</strong> Provide access to advanced resources and hands-on training.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <i class="fa-solid fa-check text-secondary mt-1"></i>
+                        <p><strong>Annual Congress:</strong> Organize ISTSCON for global expert engagement.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <i class="fa-solid fa-check text-secondary mt-1"></i>
+                        <p><strong>Research & Innovation:</strong> Encourage research to improve patient outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Member CTA -->
+    <section id="member-cta" class="py-24 bg-gradient-to-br from-primary to-secondary relative overflow-hidden text-center">
+        <!-- Decorative bg elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-black/10 blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="reveal flex flex-col items-center">
+                <span class="text-lightbg font-bold tracking-wider uppercase text-sm md:text-base mb-4 block border border-white/30 px-5 py-1.5 rounded-full backdrop-blur-sm bg-white/10 shadow-sm">Join Our Community</span>
+                
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                    Become a Member of the ISTST
+                </h2>
+                
+                <p class="text-gray-100 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto font-light">
+                    Gain exclusive access to a vibrant network of leading thoracic surgeons, cutting-edge research, and premier professional development opportunities across India.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
+                    <a href="#" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-dark hover:text-white transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 text-lg w-full sm:w-auto">
+                        Enroll as a Member <i class="fa-solid fa-user-plus ml-2"></i>
+                    </a>
+                    <a href="#" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 text-lg w-full sm:w-auto">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Section -->
+    <section class="py-20 bg-slate-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-dark">Committee</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Narrow Strip layout -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 reveal">
+                
+                <!-- Member 1 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+                        <img src="https://placehold.co/150x150/e2e8f0/475569?text=SV" alt="Dr. SV Srikrishna" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading font-bold text-dark text-sm sm:text-base">Dr. SV Srikrishna</h4>
+                    <p class="text-xs text-secondary font-medium">President</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+                        <img src="https://placehold.co/150x150/e2e8f0/475569?text=RS" alt="Dr Rajan Santosham" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading font-bold text-dark text-sm sm:text-base">Dr Rajan Santosham</h4>
+                    <p class="text-xs text-secondary font-medium">Past President</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+                        <img src="https://placehold.co/150x150/e2e8f0/475569?text=RR" alt="RS Reddy" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading font-bold text-dark text-sm sm:text-base">RS Reddy</h4>
+                    <p class="text-xs text-secondary font-medium">Joint Secretary</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+                        <img src="https://placehold.co/150x150/e2e8f0/475569?text=RD" alt="Dr. Ravindra Kumar Dewan" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading font-bold text-dark text-sm sm:text-base">Dr. Ravindra Kumar Dewan</h4>
+                    <p class="text-xs text-secondary font-medium">Vice President</p>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="text-center group">
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+                        <img src="https://placehold.co/150x150/e2e8f0/475569?text=BB" alt="Dr Bhabatosh Biswas" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-heading font-bold text-dark text-sm sm:text-base">Dr Bhabatosh Biswas</h4>
+                    <p class="text-xs text-secondary font-medium">Secretary</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-300 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <div>
+                    <img src="https://istst.org/wp-content/uploads/2024/12/cropped-ISTST_logo-removebg-preview-107x107.png" onerror="this.src='https://placehold.co/80x80/0F4D61/FFFFFF?text=ISTST'" alt="ISTST Logo" class="h-16 w-auto mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+                    <p class="text-sm text-gray-400 mb-4 max-w-sm leading-relaxed">Advancing Thoracic Care Empowering Health through continuous education, research, and innovation.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-heading font-bold mb-6 text-xl">Quick Links</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#about" class="hover:text-secondary transition-colors">About ISTST</a></li>
+                        <li><a href="#member-cta" class="hover:text-secondary transition-colors">Become a Member</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Annual Congress (ISTSCON)</a></li>
+                        <li><a href="#" class="hover:text-secondary transition-colors">Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-heading font-bold mb-6 text-xl">Contact</h3>
+                    <p class="text-sm mb-2"><i class="fa-solid fa-location-dot mr-2 text-secondary"></i> HA 331, Saltlake City, Kolkata -700091</p>
+                    <p class="text-sm mb-4"><i class="fa-solid fa-phone mr-2 text-secondary"></i> +91 98322 87099</p>
+                    
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>Copyright &copy; 2026 istst.org | Modernized Concept Design</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Navbar Background on Scroll ---
+            const navbar = document.getElementById('navbar');
+            const navContainer = document.getElementById('nav-container');
+            const announcementBar = document.getElementById('announcement-bar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('bg-white/95');
+                    navbar.classList.remove('bg-white/90');
+                    if(navContainer) {
+                        navContainer.classList.remove('h-20');
+                        navContainer.classList.add('h-16');
+                    }
+                    if(announcementBar) {
+                        announcementBar.style.maxHeight = '0px';
+                        announcementBar.style.opacity = '0';
+                        announcementBar.style.borderTopWidth = '0px';
+                    }
+                } else {
+                    navbar.classList.add('bg-white/90');
+                    navbar.classList.remove('bg-white/95');
+                    if(navContainer) {
+                        navContainer.classList.add('h-20');
+                        navContainer.classList.remove('h-16');
+                    }
+                    if(announcementBar) {
+                        announcementBar.style.maxHeight = '50px';
+                        announcementBar.style.opacity = '1';
+                        announcementBar.style.borderTopWidth = '1px';
+                    }
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
+
+            function toggleMenu() {
+                mobileMenu.classList.toggle('open');
+                menuOverlay.classList.toggle('hidden');
+                document.body.classList.toggle('overflow-hidden'); // Prevent scrolling
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            closeMenuBtn.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+
+            // --- Hero Slider Logic ---
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideInterval = 5000; // 5 seconds
+            let sliderTimer;
+
+            function showSlide(index) {
+                // Remove active classes
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => {
+                    dot.classList.remove('opacity-100');
+                    dot.classList.add('opacity-40');
+                });
+
+                // Add active to current
+                slides[index].classList.add('active');
+                dots[index].classList.remove('opacity-40');
+                dots[index].classList.add('opacity-100');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                let next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            // Init slider
+            if(slides.length > 0) {
+                sliderTimer = setInterval(nextSlide, slideInterval);
+
+                // Dot click handlers
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        clearInterval(sliderTimer);
+                        showSlide(index);
+                        sliderTimer = setInterval(nextSlide, slideInterval);
+                    });
+                });
+            }
+
+            // --- Scroll Reveal Animations (Intersection Observer) ---
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run once
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealOnScroll.observe(el));
+
+        });
+    </script>
+</body>
+</html>
