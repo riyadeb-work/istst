@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Theme preprocess functions for ISTST Theme.
+ */
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Adds an "istst-logged-in" class to <body> for authenticated users,
+ * so CSS can push the header down below the admin toolbar without
+ * relying on the standard Drupal core body classes (which don't
+ * reliably include a logged-in indicator on their own).
+ */
+function istst_theme_preprocess_html(array &$variables): void {
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $variables['attributes']['class'][] = 'istst-logged-in';
+  }
+}

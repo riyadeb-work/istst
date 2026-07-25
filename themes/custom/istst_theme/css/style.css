@@ -118,12 +118,7 @@ body {
 .istst-lightbox {
   transition: opacity 0.25s ease;
 }
-/*
- * Offset the fixed site header when Drupal's admin toolbar is
- * present (logged-in admins only -- front-end visitors never see
- * this). --istst-toolbar-offset is set dynamically in main.js to
- * match the toolbar's actual rendered height, since that height
- * varies (core toolbar bar vs. Gin's "Back to Administration" bar,
- * tray open/closed, mobile vs desktop).
- */
 
+body.istst-logged-in #header-wrapper {
+  position: static;
+}

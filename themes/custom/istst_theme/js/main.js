@@ -12,7 +12,7 @@
 
   Drupal.behaviors.iststTheme = {
     attach: function (context) {
-      
+
       // --- Navbar background + announcement bar on scroll ---
       once('istst-navbar-scroll', 'body', context).forEach(function () {
         var navbar = document.getElementById('navbar');
