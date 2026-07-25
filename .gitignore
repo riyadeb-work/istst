@@ -34,6 +34,9 @@
 /sites/*/translations/
 /sites/*/simpletest/
 
+# Ignore settings files
+sites/default/settings.php
+
 # ==============================================================================
 # 3. LOCAL & SENSITIVE SETTINGS FILES
 # ==============================================================================
