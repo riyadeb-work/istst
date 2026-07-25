@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Site header: announcement marquee + navbar + logo.
+ *
+ * The actual nav links (desktop dropdown + mobile drawer) are rendered
+ * by the "Main navigation" system menu block placed in the Header
+ * region (Admin > Structure > Block layout), styled by
+ * templates/navigation/menu--main.html.twig. That single template
+ * emits BOTH the desktop <nav> and the mobile drawer markup, so
+ * {{ page.header }} below is all that's needed for both.
+ */
+#}
+<header id="header-wrapper" class="fixed top-0 w-full z-50 flex flex-col">
+
+  {# Announcement marquee #}
+  <a href="#events" id="announcement-bar" class="block bg-gradient-to-r from-secondary to-primary text-white marquee-container transition-all duration-500 overflow-hidden hover:opacity-95" style="max-height: 50px; opacity: 1;">
+    <div class="marquee-content gap-4 px-4 py-2.5">
+      <span class="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm shrink-0">
+        <i class="fa-solid fa-bullhorn text-[10px]"></i>
+      </span>
+      <span class="font-medium text-sm tracking-wide">Join us for the upcoming ISTSCON 2025 Annual Congress!</span>
+      <span class="shrink-0 bg-white text-primary px-3 py-0.5 rounded-full text-xs font-bold transition-colors ml-2 shadow-sm inline-flex items-center">
+        Register Now <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+      </span>
+    </div>
+  </a>
+
+  {# Navbar #}
+  <div id="navbar" class="w-full transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div id="nav-container" class="flex justify-between items-center h-20 transition-all duration-300">
+
+        {# Logo #}
+        <div class="flex-shrink-0 flex items-center">
+          <a href="{{ front_page }}" class="flex items-center gap-2">
+            <img src="{{ logo|default('https://istst.org/wp-content/uploads/2024/12/cropped-ISTST_logo-removebg-preview-107x107.png') }}" onerror="this.src='https://placehold.co/48x48/0F4D61/FFFFFF?text=ISTST'" alt="{{ site_name|default('ISTST') }} Logo" class="h-10 w-auto">
+            <span class="font-heading font-bold text-primary text-lg hidden sm:block">{{ site_name|default('ISTST') }}</span>
+          </a>
+        </div>
+
+        {# Main navigation block (desktop nav + mobile drawer) goes here #}
+        {{ page.header }}
+
+        {# Mobile hamburger trigger (opens the drawer rendered by the menu block above) #}
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" type="button" aria-label="Open menu" class="text-primary hover:text-secondary focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>

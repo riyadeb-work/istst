@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * ISTST theme page skeleton.
+ *
+ * Pulls in the header and footer as separate twig partials (per the
+ * "header / footer / main content" split requested), and renders the
+ * routed page/controller output in the "content" region in between.
+ */
+#}
+<div id="page-wrapper">
+
+  {% include '@istst_theme/templates/partials/header.html.twig' %}
+
+  <main id="main-content" role="main" tabindex="-1">
+    {{ page.content }}
+  </main>
+
+  {% include '@istst_theme/templates/partials/footer.html.twig' %}
+
+</div>

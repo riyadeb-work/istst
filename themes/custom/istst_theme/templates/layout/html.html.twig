@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * ISTST theme override of Drupal core's html.html.twig.
+ *
+ * Adds Google Fonts, FontAwesome and the Tailwind CDN engine + inline
+ * theme config in <head>, exactly matching the approved static build.
+ */
+#}
+<html{{ html_attributes }}>
+<head>
+  <head-placeholder token="{{ placeholder_token }}">
+  <title>{{ head_title|safe_join(' | ') }}</title>
+
+  {# Google Fonts #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  {# FontAwesome icons #}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  {# Tailwind CDN (JIT engine) + theme config. Kept head-blocking and
+     inline (not via the library system) so it runs before first paint,
+     identical to the static file. TODO for production: replace with a
+     compiled Tailwind build + purge, see README.md. #}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#0F4D61',
+            secondary: '#3AA6B9',
+            accent: '#2997AA',
+            lightbg: '#E9F8F9',
+            dark: '#0F172A',
+            textgray: '#454F5E'
+          }
+        }
+      }
+    }
+  </script>
+
+  <css-placeholder token="{{ placeholder_token }}">
+  <js-placeholder token="{{ placeholder_token }}">
+</head>
+<body{{ attributes.addClass('font-sans text-textgray bg-slate-50 overflow-x-hidden') }}>
+  <a href="#main-content" class="visually-hidden focusable">
+    {{ 'Skip to main content'|t }}
+  </a>
+  {{ page_top }}
+  {{ page }}
+  {{ page_bottom }}
+  <js-bottom-placeholder token="{{ placeholder_token }}">
+</body>
+</html>

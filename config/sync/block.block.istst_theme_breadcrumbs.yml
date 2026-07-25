@@ -1,0 +1,22 @@
+uuid: 1efa8644-2ebd-4835-8650-b520fc1ef025
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - istst_theme
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: istst_theme_breadcrumbs
+theme: istst_theme
+region: header
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

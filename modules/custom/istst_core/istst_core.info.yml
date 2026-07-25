@@ -1,0 +1,5 @@
+name: 'ISTST Core'
+type: module
+description: 'Custom controllers, routes and theme hooks for the ISTST site that fall outside standard content types/views (e.g. the home page).'
+package: Custom
+core_version_requirement: ^10 || ^11

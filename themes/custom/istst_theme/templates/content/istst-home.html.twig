@@ -1,0 +1,153 @@
+{#
+/**
+ * @file istst-home.html.twig
+ *
+ * Home page main content: hero slider, about, member CTA, committee
+ * strip. This is the theme's override of the "istst_home" theme hook
+ * declared by the istst_core module (hook_theme). Rendered inside the
+ * theme's "content" region by \Drupal\istst_core\Controller\HomeController.
+ *
+ * Variables:
+ * - hero_slides: list of {eyebrow, title, text, image, cta_text, cta_url, gradient}
+ * - committee: list of {name, role, initials}
+ */
+#}
+
+{# ---- Hero Slider ---- #}
+<section class="relative h-screen min-h-[600px] w-full bg-dark overflow-hidden">
+  <div id="slider-container" class="relative w-full h-full">
+    {% for slide in hero_slides %}
+      <div class="slide{{ loop.first ? ' active' : '' }}">
+        <div class="absolute inset-0">
+          <img src="{{ slide.image }}" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" alt="{{ slide.title }}">
+          <div class="absolute inset-0 bg-gradient-to-r {{ slide.gradient }}"></div>
+        </div>
+        <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
+          <div class="slide-content max-w-3xl">
+            <span class="text-secondary font-bold tracking-wider uppercase text-sm md:text-base mb-2 block">{{ slide.eyebrow }}</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-md">
+              {{ slide.title }}
+            </h1>
+            <p class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl font-light">{{ slide.text }}</p>
+            <a href="{{ slide.cta_url }}" class="inline-flex items-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-secondary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+              {{ slide.cta_text }} <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="absolute bottom-10 left-0 right-0 flex justify-center space-x-3 z-20">
+      {% for slide in hero_slides %}
+        <button class="slider-dot w-3 h-3 rounded-full bg-white transition-opacity duration-300 {{ loop.first ? 'opacity-100' : 'opacity-40 hover:opacity-100' }}" data-index="{{ loop.index0 }}"></button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ---- About ---- #}
+<section id="about" class="py-20 md:py-28 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+      <h2 class="text-3xl md:text-5xl font-heading font-bold text-dark mb-6">About ISTST</h2>
+      <div class="w-24 h-1 bg-secondary mx-auto rounded-full mb-8"></div>
+      <p class="text-lg text-textgray leading-relaxed">
+        Indian Society of Thoracic Surgeons &amp; Trust (ISTST) plays a significant role in advancing thoracic surgery in India by fostering education and skills development among young surgeons through their annual congress, ISTSCON.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+      <div class="bg-lightbg p-10 rounded-3xl reveal shadow-sm hover:shadow-md transition-shadow">
+        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-secondary text-2xl mb-6 shadow-sm">
+          <i class="fa-solid fa-bullseye"></i>
+        </div>
+        <h3 class="text-2xl font-heading font-bold text-primary mb-4">Our Mission</h3>
+        <p class="text-textgray leading-relaxed mb-4 font-medium">
+          Empowering Surgeons, Advancing Thoracic Care, and Enhancing Patient Outcomes Through Education, Collaboration, and Innovation in the Field of Thoracic Surgery Across India.
+        </p>
+        <p class="text-textgray leading-relaxed text-sm">
+          Our mission is to advance the field of thoracic surgery by providing surgeons with education, fostering collaboration, and driving innovation, ultimately improving patient care and outcomes across India.
+        </p>
+      </div>
+
+      <div class="bg-primary text-white p-10 rounded-3xl reveal shadow-lg" style="transition-delay: 200ms;">
+        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-white text-2xl mb-6 backdrop-blur-sm border border-white/20">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+        <h3 class="text-2xl font-heading font-bold mb-4">Our Vision</h3>
+        <p class="text-gray-200 leading-relaxed mb-4 font-medium">
+          To Lead the Advancement of Thoracic Surgery in India, Elevating Standards of Care, Inspiring Innovation, and Improving Health Outcomes for Patients Nationwide.
+        </p>
+        <p class="text-gray-300 leading-relaxed text-sm">
+          Our vision is to be the premier organization advancing thoracic surgery in India, driving innovation, fostering excellence, and improving healthcare standards to positively impact patient outcomes across the nation.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm reveal">
+      <h4 class="text-xl font-heading font-bold text-dark mb-4"><span class="text-secondary">Aim and Objectives:</span> Elevating Surgical Standards</h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-textgray">
+        <div class="flex gap-3">
+          <i class="fa-solid fa-check text-secondary mt-1"></i>
+          <p><strong>Education &amp; Training:</strong> Provide access to advanced resources and hands-on training.</p>
+        </div>
+        <div class="flex gap-3">
+          <i class="fa-solid fa-check text-secondary mt-1"></i>
+          <p><strong>Annual Congress:</strong> Organize ISTSCON for global expert engagement.</p>
+        </div>
+        <div class="flex gap-3">
+          <i class="fa-solid fa-check text-secondary mt-1"></i>
+          <p><strong>Research &amp; Innovation:</strong> Encourage research to improve patient outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Become a Member CTA ---- #}
+<section id="member-cta" class="py-24 bg-gradient-to-br from-primary to-secondary relative overflow-hidden text-center">
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-black/10 blur-3xl"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="reveal flex flex-col items-center">
+      <span class="text-lightbg font-bold tracking-wider uppercase text-sm md:text-base mb-4 block border border-white/30 px-5 py-1.5 rounded-full backdrop-blur-sm bg-white/10 shadow-sm">Join Our Community</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+        Become a Member of the ISTST
+      </h2>
+      <p class="text-gray-100 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto font-light">
+        Gain exclusive access to a vibrant network of leading thoracic surgeons, cutting-edge research, and premier professional development opportunities across India.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
+        <a href="/member-registration" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-bold rounded-full hover:bg-dark hover:text-white transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 text-lg w-full sm:w-auto">
+          Enroll as a Member <i class="fa-solid fa-user-plus ml-2"></i>
+        </a>
+        <a href="/how-to-become-a-member" class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 text-lg w-full sm:w-auto">
+          Learn More <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Committee strip ---- #}
+<section class="py-20 bg-slate-50 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-dark">Committee</h2>
+      <div class="w-16 h-1 bg-secondary mx-auto rounded-full mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 reveal">
+      {% for member in committee %}
+        <div class="text-center group">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md group-hover:border-secondary transition-colors duration-300">
+            <img src="https://placehold.co/150x150/e2e8f0/475569?text={{ member.initials }}" alt="{{ member.name }}" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-heading font-bold text-dark text-sm sm:text-base">{{ member.name }}</h4>
+          <p class="text-xs text-secondary font-medium">{{ member.role }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

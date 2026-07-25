@@ -23,6 +23,7 @@ module:
   gin_toolbar: 0
   help: 0
   image: 0
+  istst_core: 0
   layout_builder: 0
   layout_discovery: 0
   link: 0
@@ -47,4 +48,5 @@ theme:
   olivero: 0
   claro: 0
   gin: 0
+  istst_theme: 0
 profile: standard

@@ -1,0 +1,15 @@
+# Site-wide CSS/JS. Google Fonts, FontAwesome and the Tailwind CDN
+# engine are intentionally loaded directly in templates/layout/html.html.twig
+# (head-blocking, same as the original static file) rather than as
+# libraries here, so ordering/FOUC behaviour matches the approved design
+# exactly. See README.md for the recommended production follow-up
+# (compiled Tailwind build instead of the CDN JIT compiler).
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/main.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Override for Drupal's built-in "Footer" menu (machine name: footer).
+ * Renders as the "Quick Links" list in the footer.
+ */
+#}
+<ul class="space-y-3 text-sm">
+  {% for item in items %}
+    <li><a href="{{ item.url }}" class="hover:text-secondary transition-colors">{{ item.title }}</a></li>
+  {% endfor %}
+</ul>

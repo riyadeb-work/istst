@@ -1,0 +1,14 @@
+name: 'ISTST Theme'
+type: theme
+description: 'Custom Drupal theme for the Indian Society of Thoracic Surgeons & Trust (ISTST), built from the approved static HTML/Tailwind design. Markup/CSS/JS are decoupled into header/footer/content twig partials.'
+package: Custom
+core_version_requirement: ^10 || ^11
+base theme: false
+
+libraries:
+  - istst_theme/global-styling
+
+regions:
+  header: 'Header navigation'
+  content: 'Content'
+  footer: 'Footer links'

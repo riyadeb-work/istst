@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Site footer. "Quick Links" comes from Drupal's built-in Footer menu
+ * (page.footer region), styled by templates/navigation/menu--footer.html.twig.
+ */
+#}
+<footer class="bg-dark text-gray-300 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+      <div>
+        <img src="{{ logo|default('https://istst.org/wp-content/uploads/2024/12/cropped-ISTST_logo-removebg-preview-107x107.png') }}" onerror="this.src='https://placehold.co/80x80/0F4D61/FFFFFF?text=ISTST'" alt="{{ site_name|default('ISTST') }} Logo" class="h-16 w-auto mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+        <p class="text-sm text-gray-400 mb-4 max-w-sm leading-relaxed">Advancing Thoracic Care Empowering Health through continuous education, research, and innovation.</p>
+      </div>
+
+      <div>
+        <h3 class="text-white font-heading font-bold mb-6 text-xl">Quick Links</h3>
+        {{ page.footer }}
+      </div>
+
+      <div>
+        <h3 class="text-white font-heading font-bold mb-6 text-xl">Contact</h3>
+        <p class="text-sm mb-2"><i class="fa-solid fa-location-dot mr-2 text-secondary"></i> HA 331, Saltlake City, Kolkata -700091</p>
+        <p class="text-sm mb-4"><i class="fa-solid fa-phone mr-2 text-secondary"></i> +91 98322 87099</p>
+
+        <div class="flex space-x-4 mt-6">
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary hover:text-white transition-all"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+      <p>Copyright &copy; {{ "now"|date("Y") }} {{ site_name|default('istst.org') }} | Powered by Studio Digital</p>
+    </div>
+  </div>
+</footer>

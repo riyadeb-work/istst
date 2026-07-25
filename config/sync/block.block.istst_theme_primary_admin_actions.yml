@@ -1,0 +1,20 @@
+uuid: d8f144b8-8174-4f2f-94b2-d65ddb900a0f
+langcode: en
+status: false
+dependencies:
+  theme:
+    - istst_theme
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: istst_theme_primary_admin_actions
+theme: istst_theme
+region: header
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

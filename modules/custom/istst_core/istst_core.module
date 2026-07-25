@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for the ISTST Core module.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Declares the "istst_home" theme hook. The actual .html.twig file is
+ * provided by the active theme (istst_theme/templates/content/istst-home.html.twig)
+ * -- Drupal's theme registry lets a theme override a module-declared
+ * template by filename, which is how content stays in the theme layer
+ * while routing/data stays in this module.
+ */
+function istst_core_theme($existing, $type, $theme, $path) {
+  return [
+    'istst_home' => [
+      'variables' => [
+        'hero_slides' => [],
+        'committee' => [],
+      ],
+      'template' => 'istst-home',
+    ],
+  ];
+}

@@ -1,0 +1,129 @@
+/**
+ * ISTST theme custom styles.
+ * Tailwind utility classes handle layout/spacing/color directly in
+ * markup (via the Tailwind CDN engine loaded in html.html.twig).
+ * This file only holds things Tailwind utilities can't express:
+ * animations, keyframes, and a few component-level states.
+ */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero slider transitions */
+.slide {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.slide.active {
+  opacity: 1;
+  z-index: 10;
+}
+.slide-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out 0.3s;
+}
+.slide.active .slide-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop dropdown menu */
+@media (min-width: 1024px) {
+  .group:hover .dropdown-menu {
+    display: block;
+    animation: fadeUp 0.2s ease-out forwards;
+  }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-trigger {
+  color: #0F4D61;
+}
+.group:hover .nav-trigger {
+  background-color: #E9F8F9;
+  color: #2997AA;
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #454F5E;
+  border-left: 2px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, padding-left 0.15s ease;
+}
+.nav-dropdown-link:hover {
+  background-color: #E9F8F9;
+  color: #0F4D61;
+  border-left-color: #3AA6B9;
+  padding-left: 1.6rem;
+}
+
+/* Mobile drawer transition */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+}
+#mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Number counter (used on future stats sections) */
+.counter-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Marquee (announcement bar) */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+}
+.marquee-content {
+  display: inline-flex;
+  align-items: center;
+  animation: marquee 20s linear infinite;
+}
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Lightbox for the Gallery page (Task 2) */
+.istst-lightbox {
+  transition: opacity 0.25s ease;
+}
+/*
+ * Offset the fixed site header when Drupal's admin toolbar is
+ * present (logged-in admins only -- front-end visitors never see
+ * this). --istst-toolbar-offset is set dynamically in main.js to
+ * match the toolbar's actual rendered height, since that height
+ * varies (core toolbar bar vs. Gin's "Back to Administration" bar,
+ * tray open/closed, mobile vs desktop).
+ */
+

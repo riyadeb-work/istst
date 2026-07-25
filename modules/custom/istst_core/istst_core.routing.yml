@@ -1,0 +1,7 @@
+istst_core.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\istst_core\Controller\HomeController::content'
+    _title: 'Home'
+  requirements:
+    _permission: 'access content'
