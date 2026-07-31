@@ -1,0 +1,11 @@
+uuid: ddc24fd1-8261-43f3-a74b-b2c686f74b51
+langcode: en
+status: true
+dependencies: {  }
+name: 'Hero Slide'
+type: hero_slide
+description: 'One slide in the home page hero slider. Not yet wired up -- HomeController still uses hardcoded data for now.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,11 @@
+uuid: 64b2ff44-a83e-4089-98d5-9be4b719ca48
+langcode: en
+status: true
+dependencies: {  }
+name: 'Gallery Image'
+type: gallery_image
+description: 'One image + caption for the Gallery page, tagged by event year for filtering.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

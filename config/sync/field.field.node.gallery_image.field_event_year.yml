@@ -1,0 +1,21 @@
+uuid: 6507a36e-964f-4678-98e6-e5a8c2d2daab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_year
+    - node.type.gallery_image
+  module:
+    - options
+id: node.gallery_image.field_event_year
+field_name: field_event_year
+entity_type: node
+bundle: gallery_image
+label: 'Event Year'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

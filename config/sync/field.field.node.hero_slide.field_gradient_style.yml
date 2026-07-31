@@ -1,0 +1,21 @@
+uuid: de5febd7-456a-4929-9cc2-27efce84c108
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gradient_style
+    - node.type.hero_slide
+  module:
+    - options
+id: node.hero_slide.field_gradient_style
+field_name: field_gradient_style
+entity_type: node
+bundle: hero_slide
+label: 'Overlay Gradient'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

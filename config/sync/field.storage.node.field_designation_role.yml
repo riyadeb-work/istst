@@ -1,0 +1,36 @@
+uuid: fc4e8136-a482-4c2a-a63f-ff91cef78d65
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_designation_role
+field_name: field_designation_role
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: president
+      label: President
+    -
+      value: past_president
+      label: 'Past President'
+    -
+      value: vice_president
+      label: 'Vice President'
+    -
+      value: secretary
+      label: Secretary
+    -
+      value: joint_secretary
+      label: 'Joint Secretary'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

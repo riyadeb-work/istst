@@ -1,0 +1,22 @@
+uuid: 016c0bf9-6a9c-49fa-b0c8-88ebf7d42b91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_academic_experience
+    - node.type.committee_member
+  module:
+    - text
+id: node.committee_member.field_academic_experience
+field_name: field_academic_experience
+entity_type: node
+bundle: committee_member
+label: 'Academic Experience'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,11 @@
+uuid: 11bb9e40-0397-4130-9fec-4363c764861f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Committee Member'
+type: committee_member
+description: 'A leadership/committee member profile (President, Secretary, etc.), shown on individual /committee/[role] pages.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

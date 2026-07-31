@@ -1,0 +1,22 @@
+uuid: eacdd93f-3707-4ade-ab73-0938cadc4412
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_degrees_training
+    - node.type.committee_member
+  module:
+    - text
+id: node.committee_member.field_degrees_training
+field_name: field_degrees_training
+entity_type: node
+bundle: committee_member
+label: 'Degrees / Training'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

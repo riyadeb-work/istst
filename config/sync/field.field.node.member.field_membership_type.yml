@@ -1,0 +1,21 @@
+uuid: 9a541d69-4c83-49c1-a4e1-9fdf27e462fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_membership_type
+    - node.type.member
+  module:
+    - options
+id: node.member.field_membership_type
+field_name: field_membership_type
+entity_type: node
+bundle: member
+label: 'Membership Type'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

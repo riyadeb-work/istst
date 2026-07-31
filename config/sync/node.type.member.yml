@@ -1,0 +1,11 @@
+uuid: 5f8476ae-c927-4ccb-a091-fbfa455a196e
+langcode: en
+status: true
+dependencies: {  }
+name: Member
+type: member
+description: 'A registered ISTST member, listed on the Members List page with search/filter by name and member ID.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

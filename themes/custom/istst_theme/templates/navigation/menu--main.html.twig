@@ -20,7 +20,7 @@
 <nav class="hidden lg:flex items-center space-x-1">
   {% for item in items %}
     <div class="relative group">
-      <a href="{{ item.url }}" class="nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200">
+      <a href="{{ item.url }}"{{ create_attribute(item.url.getOption('attributes') ?: {}).addClass('nav-trigger flex items-center text-primary font-medium px-4 py-2.5 rounded-full transition-all duration-200') }}>
         {{ item.title }}
         {% if item.below %}
           <i class="fa-solid fa-chevron-down ml-1.5 text-[10px] transition-transform duration-200 group-hover:rotate-180 group-hover:text-secondary"></i>
@@ -31,7 +31,7 @@
           <div class="relative bg-white rounded-xl shadow-xl ring-1 ring-black/5 py-2 overflow-hidden">
             <span class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"></span>
             {% for child in item.below %}
-              <a href="{{ child.url }}" class="nav-dropdown-link">{{ child.title }}</a>
+              <a href="{{ child.url }}"{{ create_attribute(child.url.getOption('attributes') ?: {}).addClass('nav-dropdown-link') }}>{{ child.title }}</a>
             {% endfor %}
           </div>
         </div>
@@ -56,12 +56,12 @@
           </button>
           <div class="hidden pl-6 py-2 space-y-2 bg-gray-50">
             {% for child in item.below %}
-              <a href="{{ child.url }}" class="block text-sm text-gray-600 py-1">{{ child.title }}</a>
+              <a href="{{ child.url }}"{{ create_attribute(child.url.getOption('attributes') ?: {}).addClass('block text-sm text-gray-600 py-1') }}>{{ child.title }}</a>
             {% endfor %}
           </div>
         </div>
       {% else %}
-        <a href="{{ item.url }}" class="block px-3 py-3 border-b border-gray-100">{{ item.title }}</a>
+        <a href="{{ item.url }}"{{ create_attribute(item.url.getOption('attributes') ?: {}).addClass('block px-3 py-3 border-b border-gray-100') }}>{{ item.title }}</a>
       {% endif %}
     {% endfor %}
   </div>

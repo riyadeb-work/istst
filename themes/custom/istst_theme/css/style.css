@@ -122,3 +122,7 @@ body {
 body.istst-logged-in #header-wrapper {
   position: static;
 }
+
+#header-wrapper .contextual {
+  display: none !important;
+}

@@ -1,0 +1,18 @@
+uuid: 610b810d-9e71-40e9-b62b-e85e9e79f1d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.hero_slide
+id: node.hero_slide.title
+field_name: title
+entity_type: node
+bundle: hero_slide
+label: 'Slide Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 9984eb75-f886-4e79-b37f-f9b863ab3c6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_eyebrow_text
+    - node.type.hero_slide
+id: node.hero_slide.field_eyebrow_text
+field_name: field_eyebrow_text
+entity_type: node
+bundle: hero_slide
+label: 'Eyebrow Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

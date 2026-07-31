@@ -1,0 +1,86 @@
+uuid: 5d138479-8e1f-4e02-b8ff-19fc90ee82f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.committee_member.field_academic_experience
+    - field.field.node.committee_member.field_clinical_expertise
+    - field.field.node.committee_member.field_current_position
+    - field.field.node.committee_member.field_degrees_training
+    - field.field.node.committee_member.field_designation_role
+    - field.field.node.committee_member.field_photo
+    - field.field.node.committee_member.field_qualification_line
+    - node.type.committee_member
+  module:
+    - image
+    - options
+    - text
+    - user
+id: node.committee_member.default
+targetEntityType: node
+bundle: committee_member
+mode: default
+content:
+  field_academic_experience:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_clinical_expertise:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_current_position:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_degrees_training:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_designation_role:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_qualification_line:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

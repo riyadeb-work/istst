@@ -1,0 +1,38 @@
+uuid: be592143-1186-42e6-855f-80130e439fa4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_photo
+    - node.type.committee_member
+  module:
+    - image
+id: node.committee_member.field_photo
+field_name: field_photo
+entity_type: node
+bundle: committee_member
+label: Photo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: 'committee/[date:custom:Y]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

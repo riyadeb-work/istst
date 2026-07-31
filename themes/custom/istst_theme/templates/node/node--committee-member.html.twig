@@ -1,0 +1,105 @@
+{#
+/**
+ * @file
+ * Theme override to display a committee member node.
+ * Uses Tailwind CSS utility classes and FontAwesome icons.
+ */
+#}
+<article{{ attributes.addClass('node', 'node--type-committee-member', 'bg-slate-50', 'min-h-screen', 'pt-40', 'pb-24') }}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {# Top Profile Banner (Horizontal Card) - Forced to always items-center #}
+    <div class="bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100 p-8 md:p-12 mb-8 flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-10">
+
+      {# Photo #}
+      {% if content.field_photo|render %}
+        <div class="flex-shrink-0">
+          <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-lightbg shadow-sm relative group mx-auto md:mx-0">
+            <div class="[&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_img]:absolute [&_img]:inset-0">
+              {{ content.field_photo }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {# Basic Identity & Current Position #}
+      <div class="flex-1 text-center md:text-left w-full">
+        <h1 class="text-3xl md:text-4xl font-heading font-bold text-primary mb-3">
+          {{ label }}
+        </h1>
+
+        {% if content.field_designation_role|render %}
+          <div class="inline-block bg-lightbg text-secondary font-bold tracking-wider text-xs md:text-sm uppercase px-5 py-2 rounded-full mb-4">
+            {{ content.field_designation_role }}
+          </div>
+        {% endif %}
+
+        {% if content.field_qualification_line|render %}
+          <div class="text-textgray text-sm md:text-base font-medium">
+            {{ content.field_qualification_line }}
+          </div>
+        {% endif %}
+
+        {# Moved Current Position #}
+        {% if content.field_current_position|render %}
+          <div class="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-100 text-left">
+            <h4 class="text-xs md:text-sm font-heading font-bold text-dark uppercase tracking-wider mb-4 flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-briefcase text-secondary"></i> Current Position
+            </h4>
+            <div class="text-textgray text-sm md:text-base leading-relaxed [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:space-y-2 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:space-y-2 [&_ol]:mb-4 [&_li]:pl-1 [&_p]:mb-4 last:[&_p]:mb-0">
+              {{ content.field_current_position }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    {# Bio Detail Stack (1 Column Full Width) #}
+    <div class="flex flex-col gap-6 md:gap-8">
+
+      {% if content.field_degrees_training|render %}
+        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 reveal active">
+          <h3 class="text-xl font-heading font-bold text-dark mb-6 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-lightbg flex items-center justify-center text-secondary shadow-sm flex-shrink-0">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            Degrees &amp; Training
+          </h3>
+          <div class="text-textgray leading-relaxed [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:space-y-2 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:space-y-2 [&_ol]:mb-4 [&_li]:pl-1 [&_p]:mb-4 last:[&_p]:mb-0">
+            {{ content.field_degrees_training }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if content.field_academic_experience|render %}
+        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 reveal active">
+          <h3 class="text-xl font-heading font-bold text-dark mb-6 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-lightbg flex items-center justify-center text-secondary shadow-sm flex-shrink-0">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            Academic Experience
+          </h3>
+          <div class="text-textgray leading-relaxed [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:space-y-3 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:space-y-3 [&_ol]:mb-4 [&_li]:pl-2 [&_p]:mb-4 last:[&_p]:mb-0">
+            {{ content.field_academic_experience }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if content.field_clinical_expertise|render %}
+        <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 reveal active">
+          <h3 class="text-xl font-heading font-bold text-dark mb-6 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-lightbg flex items-center justify-center text-secondary shadow-sm flex-shrink-0">
+              <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            Clinical Expertise &amp; Interests
+          </h3>
+          <div class="text-textgray leading-relaxed [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:space-y-3 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:space-y-3 [&_ol]:mb-4 [&_li]:pl-2 [&_p]:mb-4 last:[&_p]:mb-0">
+            {{ content.field_clinical_expertise }}
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</article>

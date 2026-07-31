@@ -1,0 +1,22 @@
+uuid: 3ccf0b45-e03a-47d7-98e3-0c152e513708
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_clinical_expertise
+    - node.type.committee_member
+  module:
+    - text
+id: node.committee_member.field_clinical_expertise
+field_name: field_clinical_expertise
+entity_type: node
+bundle: committee_member
+label: 'Clinical Expertise / Interests'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

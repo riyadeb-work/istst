@@ -1,0 +1,30 @@
+uuid: 98a5341b-2847-4a67-98e7-612c0baa0ed2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_membership_type
+field_name: field_membership_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: life
+      label: Life
+    -
+      value: annual
+      label: Annual
+    -
+      value: honorary
+      label: Honorary
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

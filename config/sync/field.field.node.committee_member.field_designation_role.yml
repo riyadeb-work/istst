@@ -1,0 +1,21 @@
+uuid: 70c55623-2764-4d52-b84b-4383926bc1bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_designation_role
+    - node.type.committee_member
+  module:
+    - options
+id: node.committee_member.field_designation_role
+field_name: field_designation_role
+entity_type: node
+bundle: committee_member
+label: 'Designation (Role)'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

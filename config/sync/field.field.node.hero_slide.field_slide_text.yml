@@ -1,0 +1,22 @@
+uuid: a08ada1c-e735-4a0c-8a69-ec45cd97f7f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slide_text
+    - node.type.hero_slide
+  module:
+    - text
+id: node.hero_slide.field_slide_text
+field_name: field_slide_text
+entity_type: node
+bundle: hero_slide
+label: 'Body Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long
