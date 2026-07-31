@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme override for 403 Access Denied errors.
+ */
+#}
+<div id="page-wrapper">
+
+  {% include '@istst_theme/templates/partials/header.html.twig' %}
+
+  <main id="main-content" role="main" tabindex="-1" class="bg-slate-50 min-h-screen pt-40 pb-24 flex items-center justify-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal active">
+
+      {# Visual Graphic #}
+      <div class="relative inline-block mb-8">
+        <h1 class="text-[150px] md:text-[200px] font-heading font-bold text-lightbg leading-none select-none drop-shadow-sm">
+          403
+        </h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg">
+            <i class="fa-solid fa-lock text-5xl text-secondary"></i>
+          </div>
+        </div>
+      </div>
+
+      {# Message #}
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+        Access Restricted
+      </h2>
+      <p class="text-lg md:text-xl text-textgray mb-10 max-w-xl mx-auto">
+        You don't have the necessary permissions to view this page. If you are a member, please log in to continue.
+      </p>
+
+      {# Action Button #}
+      <a href="{{ front_page }}" class="inline-flex items-center px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        Back to Homepage <i class="fa-solid fa-house ml-3"></i>
+      </a>
+
+    </div>
+  </main>
+
+  {% include '@istst_theme/templates/partials/footer.html.twig' %}
+
+</div>

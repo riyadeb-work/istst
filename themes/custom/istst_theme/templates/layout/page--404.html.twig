@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override for 404 Page Not Found errors.
+ */
+#}
+<div id="page-wrapper">
+
+  {% include '@istst_theme/templates/partials/header.html.twig' %}
+
+  <main id="main-content" role="main" tabindex="-1" class="bg-slate-50 min-h-screen pt-40 pb-24 flex items-center justify-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal active">
+
+      {# Visual Graphic #}
+      <div class="relative inline-block mb-8">
+        <h1 class="text-[150px] md:text-[200px] font-heading font-bold text-lightbg leading-none select-none drop-shadow-sm">
+          404
+        </h1>
+        <div class="absolute inset-0 flex items-center justify-center animate-bounce" style="animation-duration: 3s;">
+          <i class="fa-solid fa-compass text-6xl md:text-7xl text-secondary drop-shadow-md"></i>
+        </div>
+      </div>
+
+      {# Message #}
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+        Looks like you're lost.
+      </h2>
+      <p class="text-lg md:text-xl text-textgray mb-10 max-w-xl mx-auto">
+        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+      </p>
+
+      {# Action Button #}
+      <a href="{{ front_page }}" class="inline-flex items-center px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        Back to Homepage <i class="fa-solid fa-house ml-3"></i>
+      </a>
+
+    </div>
+  </main>
+
+  {% include '@istst_theme/templates/partials/footer.html.twig' %}
+
+</div>

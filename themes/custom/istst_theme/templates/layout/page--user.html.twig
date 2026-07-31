@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Theme override for all user pages (login, register, password reset, profile).
+ * Adds the required padding to clear the fixed header and styles the standard
+ * Drupal forms and tabs using Tailwind arbitrary variants.
+ */
+#}
+<div id="page-wrapper">
+
+  {% include '@istst_theme/templates/partials/header.html.twig' %}
+
+  <main id="main-content" role="main" tabindex="-1" class="bg-slate-50 min-h-screen pt-40 pb-24 flex justify-center items-start">
+
+    <div class="w-full max-w-3xl px-4 sm:px-6 lg:px-8 reveal active">
+
+      {#
+        This wrapper applies Tailwind styles deeply to standard Drupal form elements,
+        tabs, and messages so we don't have to override dozens of individual form templates.
+      #}
+      <div class="bg-white rounded-3xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 p-8 md:p-12
+
+        {# Base Text & Spacing #}
+        [&_.block]:mb-6 [&_form]:space-y-6 [&_h1]:text-3xl [&_h1]:font-heading [&_h1]:font-bold [&_h1]:text-primary [&_h1]:mb-6
+
+        {# Labels & Descriptions #}
+        [&_label]:block [&_label]:text-sm [&_label]:font-bold [&_label]:text-dark [&_label]:mb-2
+        [&_.description]:text-sm [&_.description]:text-gray-500 [&_.description]:mt-2
+
+        {# Inputs #}
+        [&_input[type='text']]:w-full [&_input[type='text']]:rounded-xl [&_input[type='text']]:border-gray-200 [&_input[type='text']]:border [&_input[type='text']]:px-4 [&_input[type='text']]:py-3 [&_input[type='text']]:bg-slate-50 [&_input[type='text']]:focus:ring-2 [&_input[type='text']]:focus:ring-secondary [&_input[type='text']]:outline-none [&_input[type='text']]:transition-all
+        [&_input[type='password']]:w-full [&_input[type='password']]:rounded-xl [&_input[type='password']]:border-gray-200 [&_input[type='password']]:border [&_input[type='password']]:px-4 [&_input[type='password']]:py-3 [&_input[type='password']]:bg-slate-50 [&_input[type='password']]:focus:ring-2 [&_input[type='password']]:focus:ring-secondary [&_input[type='password']]:outline-none [&_input[type='password']]:transition-all
+        [&_input[type='email']]:w-full [&_input[type='email']]:rounded-xl [&_input[type='email']]:border-gray-200 [&_input[type='email']]:border [&_input[type='email']]:px-4 [&_input[type='email']]:py-3 [&_input[type='email']]:bg-slate-50 [&_input[type='email']]:focus:ring-2 [&_input[type='email']]:focus:ring-secondary [&_input[type='email']]:outline-none [&_input[type='email']]:transition-all
+
+        {# Submit Button #}
+        [&_input[type='submit']]:inline-flex [&_input[type='submit']]:items-center [&_input[type='submit']]:px-8 [&_input[type='submit']]:py-4 [&_input[type='submit']]:bg-primary [&_input[type='submit']]:text-white [&_input[type='submit']]:font-bold [&_input[type='submit']]:rounded-full [&_input[type='submit']]:hover:bg-secondary [&_input[type='submit']]:transition-all [&_input[type='submit']]:cursor-pointer [&_input[type='submit']]:shadow-md [&_input[type='submit']]:hover:shadow-lg [&_input[type='submit']]:hover:-translate-y-0.5
+
+        {# Messages (Error/Status alerts) #}
+        [&_.messages]:p-4 [&_.messages]:rounded-xl [&_.messages]:mb-6 [&_.messages]:border [&_.messages]:text-sm
+        [&_.messages--error]:bg-red-50 [&_.messages--error]:text-red-800 [&_.messages--error]:border-red-200
+        [&_.messages--status]:bg-green-50 [&_.messages--status]:text-green-800 [&_.messages--status]:border-green-200
+
+        {# Primary Tabs (Log in, Register, Reset Password) #}
+        [&_ul.tabs]:flex [&_ul.tabs]:flex-wrap [&_ul.tabs]:gap-2 [&_ul.tabs]:mb-8 [&_ul.tabs]:border-b [&_ul.tabs]:border-gray-100 [&_ul.tabs]:pb-4
+        [&_ul.tabs_li]:list-none [&_ul.tabs_li]:m-0
+        [&_ul.tabs_a]:inline-block [&_ul.tabs_a]:px-5 [&_ul.tabs_a]:py-2.5 [&_ul.tabs_a]:rounded-full [&_ul.tabs_a]:text-textgray [&_ul.tabs_a]:font-medium [&_ul.tabs_a]:transition-colors [&_ul.tabs_a:hover]:bg-gray-100
+        [&_ul.tabs_a.is-active]:bg-lightbg [&_ul.tabs_a.is-active]:text-primary [&_ul.tabs_a.is-active]:font-bold
+      ">
+
+        {{ page.content }}
+
+      </div>
+
+    </div>
+  </main>
+
+  {% include '@istst_theme/templates/partials/footer.html.twig' %}
+
+</div>
