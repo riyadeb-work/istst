@@ -126,3 +126,13 @@ body.istst-logged-in #header-wrapper {
 #header-wrapper .contextual {
   display: none !important;
 }
+
+#mobile-menu {
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9999;
+}
+
+#menu-overlay {
+  z-index: 9998;
+}
