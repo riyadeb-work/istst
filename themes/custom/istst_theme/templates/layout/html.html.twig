@@ -24,13 +24,14 @@
   <meta property="og:title" content="{{ head_title|safe_join(' | ') }}" />
   <meta property="og:description" content="Indian Society of Thoracic Surgeons & Trust (ISTST)" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/themes/custom/istst_theme/images/logo_small.png" />
+  <meta property="og:url" content="{{ url('<current>') }}" />
+  <meta property="og:image" content="{{ url('<front>') }}themes/custom/istst_theme/images/logo_small.png" />
 
   {# --- Twitter Card Tags --- #}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ head_title|safe_join(' | ') }}" />
   <meta name="twitter:description" content="Indian Society of Thoracic Surgeons & Trust (ISTST)" />
-  <meta name="twitter:image" content="/themes/custom/istst_theme/images/logo_small.png" />
+  <meta name="twitter:image" content="{{ url('<front>') }}themes/custom/istst_theme/images/logo_small.png" />
 
   {# Google Fonts #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
