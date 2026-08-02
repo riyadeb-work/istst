@@ -23,5 +23,11 @@ function istst_core_theme($existing, $type, $theme, $path) {
       ],
       'template' => 'istst-home',
     ],
+    'istst_member_registration' => [
+      'variables' => [
+        'webform' => NULL,
+      ],
+      'template' => 'istst-member-registration',
+    ],
   ];
 }

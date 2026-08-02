@@ -8,11 +8,13 @@ dependencies:
     - field.field.node.committee_member.field_current_position
     - field.field.node.committee_member.field_degrees_training
     - field.field.node.committee_member.field_designation_role
+    - field.field.node.committee_member.field_metatags
     - field.field.node.committee_member.field_photo
     - field.field.node.committee_member.field_qualification_line
     - node.type.committee_member
   module:
     - image
+    - metatag
     - options
     - text
     - user
@@ -58,6 +60,13 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
   field_photo:
     type: image
     label: above
@@ -83,4 +92,7 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

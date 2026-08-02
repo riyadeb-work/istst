@@ -1,0 +1,81 @@
+{#
+/**
+ * @file istst-member-registration.html.twig
+ *
+ * Member Registration page: static eligibility/fee info on the left
+ * (stacks on top on mobile), the actual "member_registration" Webform
+ * on the right (stacks below on mobile) inside a card matching the
+ * homepage's design tokens (rounded-3xl, shadow-xl, primary/secondary
+ * palette). Rendered by \Drupal\istst_core\Controller\MemberRegistrationController.
+ *
+ * Variables:
+ * - webform: render array for the embedded "member_registration" Webform.
+ */
+#}
+
+{# ---- Page header banner ---- #}
+<section class="relative bg-gradient-to-br from-primary to-secondary pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white/10 blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-black/10 blur-3xl"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <span class="text-lightbg font-bold tracking-wider uppercase text-sm md:text-base mb-4 block">Join ISTST</span>
+    <h1 class="text-4xl md:text-6xl font-heading font-bold text-white leading-tight">Member Enrollment</h1>
+  </div>
+</section>
+
+{# ---- Main content ---- #}
+<section class="py-12 md:py-20 bg-lightbg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+
+      {# ---- Sidebar: eligibility / fees / bank details ---- #}
+      <div class="lg:col-span-2 bg-white rounded-3xl shadow-sm p-6 md:p-8 space-y-5 text-sm text-textgray leading-relaxed">
+        <div class="space-y-2 pb-5 border-b border-gray-100">
+          <p class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-secondary mt-1"></i> HA 331, Saltlake City, Kolkata - 700091</p>
+          <p class="flex items-start gap-3"><i class="fa-solid fa-envelope text-secondary mt-1"></i> support@istst.org</p>
+          <p class="flex items-start gap-3"><i class="fa-solid fa-phone text-secondary mt-1"></i> +91 98322 87099</p>
+        </div>
+
+        <div>
+          <h3 class="font-heading font-bold text-dark mb-2">Membership Qualification</h3>
+          <p class="text-xs text-gray-500 mb-3">(Any of the following categories are eligible for Life Membership)</p>
+
+          <p class="font-semibold text-dark mb-1">Essential:</p>
+          <ul class="space-y-2 mb-4">
+            <li><strong>Category I:</strong> MS/MD/DNB (Gen Surg/Anaes/Pulm Med/Crit Care/Paed/ENT/Gen Med/Any other related Speciality)</li>
+            <li><strong>Category II:</strong> MCh/DNB (Thor Surg/CTVS/Any other related Speciality)</li>
+            <li><strong>Category III:</strong> DM/DNB (Cardiac Anaesthesia/Pulm Med/Crit Care Med/Any other related Speciality)</li>
+            <li><strong>Category IV:</strong> PGT/PDT of Category I, II &amp; III are also eligible for Life Membership.</li>
+          </ul>
+
+          <p class="font-semibold text-dark mb-1">Desirable:</p>
+          <p class="mb-4">Experience/Interest in Thoracic Surgery or related speciality as mentioned in Category I, II, III is desirable.</p>
+
+          <p class="text-xs text-gray-500 italic">
+            <strong>N.B.:</strong> A candidate may be proposed for Life Membership of Indian Society of Thoracic Surgeons by: (1) a Life Member of ISTS, or (2) HOD of the related specialities mentioned in Category I, II, III.
+          </p>
+        </div>
+
+        <div class="pt-5 border-t border-gray-100">
+          <h3 class="font-heading font-bold text-dark mb-2">Bank Details</h3>
+          <p class="mb-2">Indian Society of Thoracic Surgeons and Trust, State Bank of India (11534) - Ballygunge Park, Kolkata (1 Ashutosh Chowdhury Avenue, Kol-700019, West Bengal)</p>
+          <p class="mb-1">Account number: <strong>37368554163</strong></p>
+          <p class="mb-3">IFSC: <strong>SBIN0011534</strong></p>
+          <p class="text-xs text-gray-500 mb-1">Preferred mode of payment: RTGS/NEFT</p>
+          <p class="font-semibold text-dark">Life Membership Fee: ₹7,500/- (Cash/Cheque/DD/NEFT)</p>
+        </div>
+      </div>
+
+      {# ---- Form card ---- #}
+      <div class="lg:col-span-3 bg-white rounded-3xl shadow-xl p-6 md:p-10">
+        <h2 class="text-2xl font-heading font-bold text-dark mb-1">Online Membership Form</h2>
+        <p class="text-sm text-gray-500 mb-8">Life Membership Form -- fields marked * are required.</p>
+
+        <div class="istst-webform-wrapper">
+          {{ webform }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -9,8 +9,28 @@
 #}
 <html{{ html_attributes }}>
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
   <head-placeholder token="{{ placeholder_token }}">
   <title>{{ head_title|safe_join(' | ') }}</title>
+
+  {# --- Basic SEO Meta Tags --- #}
+  <meta name="description" content="Indian Society of Thoracic Surgeons & Trust (ISTST)" />
+  <meta name="author" content="ISTST" />
+
+  {# --- Open Graph (OG) Tags --- #}
+  <meta property="og:site_name" content="Indian Society of Thoracic Surgeons & Trust" />
+  <meta property="og:title" content="{{ head_title|safe_join(' | ') }}" />
+  <meta property="og:description" content="Indian Society of Thoracic Surgeons & Trust (ISTST)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/themes/custom/istst_theme/images/logo_small.png" />
+
+  {# --- Twitter Card Tags --- #}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ head_title|safe_join(' | ') }}" />
+  <meta name="twitter:description" content="Indian Society of Thoracic Surgeons & Trust (ISTST)" />
+  <meta name="twitter:image" content="/themes/custom/istst_theme/images/logo_small.png" />
 
   {# Google Fonts #}
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -11,6 +11,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * For authenticated users (admin toolbar visible), our theme adds an
+ * "istst-logged-in" class to <body> via istst_theme_preprocess_html()
+ * in istst_theme.theme. The admin toolbar sits on top of our normally
+ * fixed header, so for logged-in users we just drop the header out
+ * of fixed positioning entirely and push it down with a flat margin.
+ */
+body.istst-logged-in #header-wrapper {
+  position: static;
+  margin-top: 105px;
+}
+
+/*
+ * Contextual Links (the pencil-icon block edit overlay Drupal shows
+ * admins on hover) sits on top of our nav items and intercepts the
+ * mouse before the CSS :hover dropdown can trigger -- effectively
+ * breaking the Organization/Gallery/Events/Member dropdowns for
+ * logged-in admins only. This is purely a Contextual Links UX
+ * problem (front-end visitors never see it), so we just hide its
+ * trigger within the header nav rather than disabling the module
+ * site-wide (it's still useful elsewhere, e.g. the Content region).
+ */
+#header-wrapper .contextual {
+  display: none !important;
+}
+
 /* Scroll reveal animation */
 .reveal {
   opacity: 0;
@@ -119,20 +145,245 @@ body {
   transition: opacity 0.25s ease;
 }
 
-body.istst-logged-in #header-wrapper {
-  position: static;
+/*
+ * Re-skin Drupal core/Webform's default form markup to match the
+ * site's modern minimalist look, scoped to .istst-webform-wrapper so
+ * it never touches Drupal's own admin forms elsewhere.
+ */
+.istst-webform-wrapper label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #0F172A; /* text-dark */
+  margin-bottom: 0.375rem;
 }
 
-#header-wrapper .contextual {
-  display: none !important;
+.istst-webform-wrapper .form-item,
+.istst-webform-wrapper .webform-composite {
+  margin-bottom: 1.5rem;
 }
 
-#mobile-menu {
-  height: 100vh;
+.istst-webform-wrapper input[type="text"],
+.istst-webform-wrapper input[type="email"],
+.istst-webform-wrapper input[type="tel"],
+.istst-webform-wrapper input[type="date"],
+.istst-webform-wrapper input[type="number"],
+.istst-webform-wrapper textarea,
+.istst-webform-wrapper select {
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9375rem;
+  color: #0F172A;
   background-color: #ffffff;
-  z-index: 9999;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-#menu-overlay {
-  z-index: 9998;
+.istst-webform-wrapper input:focus,
+.istst-webform-wrapper textarea:focus,
+.istst-webform-wrapper select:focus {
+  outline: none;
+  border-color: #3AA6B9; /* secondary */
+  box-shadow: 0 0 0 3px rgba(58, 166, 185, 0.15);
+}
+
+.istst-webform-wrapper textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+/*
+ * The Telephone element's "international" widget (intl-tel-input,
+ * the .iti wrapper you can see in the DOM) absolutely-positions a
+ * flag + dial-code selector inside the input's own box. Our generic
+ * input padding above doesn't reserve room for that, so the flag
+ * sits on top of the typed/placeholder digits. Give this specific
+ * input enough left padding to clear the flag box, and make sure
+ * the .iti wrapper itself doesn't fight our width:100% rule.
+ */
+.istst-webform-wrapper .iti {
+  width: 100%;
+}
+
+.istst-webform-wrapper .iti input[type="tel"] {
+  padding-left: 3.75rem;
+}
+
+.istst-webform-wrapper .iti__flag-container {
+  z-index: 2;
+}
+
+.istst-webform-wrapper fieldset {
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.istst-webform-wrapper fieldset legend {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #0F4D61; /* primary */
+  padding: 0 0.5rem;
+}
+
+.istst-webform-wrapper .webform-composite .form-item {
+  margin-bottom: 1rem;
+}
+
+.istst-webform-wrapper .form-required::after {
+  content: ' *';
+  color: #DC2626;
+}
+
+.istst-webform-wrapper .webform-submit,
+.istst-webform-wrapper input[type="submit"] {
+  width: 100%;
+  background-color: #0F4D61; /* primary */
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.istst-webform-wrapper .webform-submit:hover,
+.istst-webform-wrapper input[type="submit"]:hover {
+  background-color: #2997AA; /* accent */
+  transform: translateY(-1px);
+}
+
+.istst-webform-wrapper .webform-message--error,
+.istst-webform-wrapper .messages--error {
+  border-radius: 0.75rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Two-column layout for composite sub-fields (Name, Address) on
+   larger screens; single column on mobile by default. */
+@media (min-width: 640px) {
+  .istst-webform-wrapper .webform-composite .form-item {
+    display: inline-block;
+    width: 48%;
+    margin-right: 2%;
+    vertical-align: top;
+  }
+}
+
+/* ==========================================================================
+   ENHANCED COMPACT FORM LAYOUT
+   ========================================================================== */
+
+/* Modern Grid Layout for Desktop */
+@media (min-width: 768px) {
+  .webform-submission-member-registration-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+  }
+
+  /* Elements that should span full width */
+  .webform-submission-member-registration-form > .form-item,
+  .webform-submission-member-registration-form > .webform-composite,
+  .webform-submission-member-registration-form > fieldset,
+  .webform-submission-member-registration-form > .form-actions {
+    grid-column: span 2;
+    margin-bottom: 0; /* Let grid gap handle spacing */
+  }
+
+  /* Specific elements to shrink to half width */
+  .webform-submission-member-registration-form .form-item-date-of-birth,
+  .webform-submission-member-registration-form .form-item-qualification,
+  .webform-submission-member-registration-form .form-item-mci-regn-no,
+  .webform-submission-member-registration-form .form-item-present-position,
+  .webform-submission-member-registration-form .form-item-phone,
+  .webform-submission-member-registration-form .form-item-email {
+    grid-column: span 1 !important;
+  }
+}
+
+/* Adjust composite spacing using Grid */
+.istst-webform-wrapper .webform-composite .form-item {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .webform-type-webform-address .fieldset-wrapper,
+  .webform-type-webform-name .fieldset-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 1.25rem;
+  }
+
+  /* Address lines that need full width within the composite grid.
+     Notice country is NOT here, so it spans 1 column next to postal code */
+  .webform-type-webform-address .form-item-address-address,
+  .webform-type-webform-address .form-item-address-address-2 {
+    grid-column: span 2;
+  }
+}
+
+/* Make Fieldsets look like cards (Name, Address, Sex, Proposed By, etc.) */
+.istst-webform-wrapper fieldset {
+  padding: 1.25rem 1rem;
+  margin-top: 0.5rem;
+  background-color: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+}
+.istst-webform-wrapper fieldset legend {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0F4D61; /* Matches primary theme color */
+  padding: 0 0.5rem;
+}
+
+/* Make inputs look a bit sharper */
+.istst-webform-wrapper input::placeholder,
+.istst-webform-wrapper textarea::placeholder {
+  color: #9CA3AF;
+  opacity: 1;
+}
+
+/* Override Drupal's default one-column stacking */
+.istst-webform-wrapper .js-webform-radios {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  padding-top: 0.25rem;
+}
+
+/* Align the individual radio container */
+.istst-webform-wrapper .form-type-radio {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Ensure the circular radio input doesn't stretch and has spacing */
+.istst-webform-wrapper .form-type-radio input[type="radio"] {
+  width: auto !important;
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* Reset the label inside the radio button */
+.istst-webform-wrapper .form-type-radio label {
+  margin-bottom: 0;
+  font-weight: 500;
+  cursor: pointer;
 }

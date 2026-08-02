@@ -8,12 +8,14 @@ dependencies:
     - field.field.node.committee_member.field_current_position
     - field.field.node.committee_member.field_degrees_training
     - field.field.node.committee_member.field_designation_role
+    - field.field.node.committee_member.field_metatags
     - field.field.node.committee_member.field_photo
     - field.field.node.committee_member.field_qualification_line
     - image.style.thumbnail
     - node.type.committee_member
   module:
     - image
+    - metatag
     - path
     - text
 id: node.committee_member.default
@@ -64,6 +66,14 @@ content:
     weight: 7
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_metatags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_photo:
     type: image_image

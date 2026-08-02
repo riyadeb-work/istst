@@ -1,0 +1,21 @@
+uuid: bc3c7e1a-99b4-40c2-8a94-66e86cedc91a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_metatags
+    - node.type.committee_member
+  module:
+    - metatag
+id: node.committee_member.field_metatags
+field_name: field_metatags
+entity_type: node
+bundle: committee_member
+label: Metatags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag

@@ -17,4 +17,8 @@ function istst_theme_preprocess_html(array &$variables): void {
   if (\Drupal::currentUser()->isAuthenticated()) {
     $variables['attributes']['class'][] = 'istst-logged-in';
   }
+  // Check if the current page is the front page.
+  if (\Drupal::service('path.matcher')->isFrontPage()) {
+    $variables['head_title'] = ['title' => t('ISTST - Indian Society of Thoracic Surgeons & Trust')];
+  }
 }

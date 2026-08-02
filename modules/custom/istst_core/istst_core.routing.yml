@@ -5,3 +5,11 @@ istst_core.home:
     _title: 'Home'
   requirements:
     _permission: 'access content'
+
+istst_core.member_registration:
+  path: '/member-registration'
+  defaults:
+    _controller: '\Drupal\istst_core\Controller\MemberRegistrationController::content'
+    _title: 'Member Registration'
+  requirements:
+    _permission: 'access content'
