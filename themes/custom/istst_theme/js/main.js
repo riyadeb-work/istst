@@ -1,7 +1,7 @@
 /**
  * @file
  * ISTST theme behaviors: navbar scroll state, mobile menu, mobile
- * accordion dropdowns, hero slider, and scroll-reveal animations.
+ * accordion dropdowns, hero slider, scroll-reveal animations, and toast notifications.
  *
  * Ported from the static site's inline <script>, wrapped in
  * Drupal.behaviors + once() so it re-attaches safely after AJAX
@@ -149,6 +149,38 @@
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
         revealOnScroll.observe(el);
+      });
+
+      // --- Toast Notification Close Button (NEW) ---
+      once('istst-toast', '[data-drupal-messages] > div, .messages, .webform-message', context).forEach(function (messageCard) {
+
+        // 1. Create the close button element
+        var closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.setAttribute('aria-label', 'Dismiss message');
+        // Tailwind utility classes for modern top-right positioning
+        closeBtn.className = 'absolute top-3 right-3 text-gray-500 hover:text-gray-900 transition-colors bg-transparent border-none p-1 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 z-50';
+        closeBtn.innerHTML = '<i class="fa-solid fa-xmark text-lg"></i>';
+
+        // 2. Inject it into the message card
+        messageCard.appendChild(closeBtn);
+
+        // 3. Handle the click event
+        closeBtn.addEventListener('click', function () {
+          // Play the slide-down dismissal animation
+          messageCard.style.animation = 'toastSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+
+          // Wait for animation to finish (300ms) before removing from DOM
+          setTimeout(function () {
+            var wrapper = messageCard.closest('[data-drupal-messages]');
+            messageCard.remove();
+
+            // If the outer wrapper is now empty, clean it up too so it doesn't leave an invisible ghost element
+            if (wrapper && wrapper.children.length === 0) {
+              wrapper.remove();
+            }
+          }, 300);
+        });
       });
 
     }

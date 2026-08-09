@@ -31,3 +31,56 @@ function istst_core_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Adds a custom validation callback to the Member Registration
+ * webform's Date of Birth element -- this rules out a future date
+ * and enforces a plausible minimum age (18), neither of which is
+ * expressible via the webform's own YAML #pattern/#required config
+ * (pattern validation is string-regex-based, not date-arithmetic).
+ * Applies to both the initial submission form and any later edit of
+ * that same submission, since Webform reuses the same base form ID
+ * pattern for both.
+ */
+function istst_core_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'webform_submission_member_registration') !== 0) {
+    return;
+  }
+
+  if (isset($form['elements']['date_of_birth'])) {
+    $form['elements']['date_of_birth']['#element_validate'][] = 'istst_core_validate_date_of_birth';
+  }
+}
+
+/**
+ * Element validate callback: Date of Birth must be in the past and
+ * imply an age of at least 18.
+ */
+function istst_core_validate_date_of_birth(array &$element, \Drupal\Core\Form\FormStateInterface $form_state, array &$complete_form) {
+  $value = $element['#value'] ?? NULL;
+  if (empty($value)) {
+    // Empty is already caught by #required; nothing further to check.
+    return;
+  }
+
+  try {
+    $dob = new \DateTime($value);
+  }
+  catch (\Exception $e) {
+    $form_state->setError($element, t('Please enter a valid date of birth.'));
+    return;
+  }
+
+  $today = new \DateTime();
+  if ($dob > $today) {
+    $form_state->setError($element, t('Date of birth cannot be in the future.'));
+    return;
+  }
+
+  $age = $today->diff($dob)->y;
+  if ($age < 18) {
+    $form_state->setError($element, t('You must be at least 18 years old to register.'));
+  }
+}

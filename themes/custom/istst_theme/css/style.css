@@ -28,14 +28,187 @@ body.istst-logged-in #header-wrapper {
  * admins on hover) sits on top of our nav items and intercepts the
  * mouse before the CSS :hover dropdown can trigger -- effectively
  * breaking the Organization/Gallery/Events/Member dropdowns for
- * logged-in admins only. This is purely a Contextual Links UX
- * problem (front-end visitors never see it), so we just hide its
- * trigger within the header nav rather than disabling the module
- * site-wide (it's still useful elsewhere, e.g. the Content region).
+ * logged-in admins only.
  */
 #header-wrapper .contextual {
   display: none !important;
 }
+
+/* ==========================================================================
+   DRUPAL STATUS MESSAGES (MODERN BOTTOM TOAST WITH SCROLL)
+   ========================================================================== */
+
+/* 1. THE OUTER WRAPPER */
+[data-drupal-messages],
+.webform-message {
+  position: fixed !important;
+  bottom: 2rem !important;
+  top: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+  width: calc(100% - 2rem) !important;
+  max-width: 28rem !important;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 !important;
+}
+
+/* 2. THE ACTUAL MESSAGE CARD */
+[data-drupal-messages] > div,
+.messages,
+.webform-message {
+  pointer-events: auto !important;
+  position: relative !important; /* Required for the absolute close button */
+  width: 100% !important;
+
+  /* Height constraints & Scrolling */
+  max-height: 45vh !important;
+  overflow-y: auto !important;
+
+  border-radius: 1rem !important;
+  /* Extra right padding (3.5rem) ensures text doesn't overlap the close button */
+  padding: 1.25rem 3.5rem 1.25rem 1.5rem !important;
+
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.75rem !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+  background-color: #ffffff !important;
+
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+
+  /* Snappy slide-up animation on load */
+  animation: toastSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  will-change: transform, opacity;
+}
+
+/* Custom Minimalist Scrollbar for the Toast */
+[data-drupal-messages] > div::-webkit-scrollbar,
+.messages::-webkit-scrollbar,
+.webform-message::-webkit-scrollbar {
+  width: 6px;
+}
+[data-drupal-messages] > div::-webkit-scrollbar-track,
+.messages::-webkit-scrollbar-track,
+.webform-message::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 1rem 0; /* Keeps track away from rounded corners */
+}
+[data-drupal-messages] > div::-webkit-scrollbar-thumb,
+.messages::-webkit-scrollbar-thumb,
+.webform-message::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+[data-drupal-messages] > div::-webkit-scrollbar-thumb:hover,
+.messages::-webkit-scrollbar-thumb:hover,
+.webform-message::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Hide default visually-hidden headings */
+[data-drupal-messages] .visually-hidden,
+.webform-message .visually-hidden {
+  display: none !important;
+}
+
+/* Animations */
+@keyframes toastSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastSlideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.95);
+  }
+}
+
+/* Strip default Drupal list styles */
+[data-drupal-messages] ul,
+.messages ul,
+.webform-message ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[data-drupal-messages] li,
+.messages li,
+.webform-message li {
+  margin-bottom: 0.375rem !important;
+}
+
+[data-drupal-messages] li:last-child,
+.messages li:last-child,
+.webform-message li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* 3. COLOR MODIFIERS & ICONS */
+[aria-label="Error message"],
+.messages--error,
+.webform-message--error {
+  background-color: #FEF2F2 !important;
+  color: #991B1B !important;
+  border-color: #FCA5A5 !important;
+}
+[aria-label="Error message"] [role="alert"]::before,
+.messages--error::before,
+.webform-message--error::before {
+  content: "⚠ ";
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+[aria-label="Status message"],
+.messages--status,
+.webform-message--status {
+  background-color: #ECFDF5 !important;
+  color: #065F46 !important;
+  border-color: #6EE7B7 !important;
+}
+[aria-label="Status message"] [role="alert"]::before,
+.messages--status::before,
+.webform-message--status::before {
+  content: "✓ ";
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+[aria-label="Warning message"],
+.messages--warning,
+.webform-message--warning {
+  background-color: #FFFBEB !important;
+  color: #92400E !important;
+  border-color: #FCD34D !important;
+}
+[aria-label="Warning message"] [role="alert"]::before,
+.messages--warning::before,
+.webform-message--warning::before {
+  content: "⚠ ";
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* ==========================================================================
+   THEME COMPONENTS & ANIMATIONS
+   ========================================================================== */
 
 /* Scroll reveal animation */
 .reveal {
@@ -45,7 +218,7 @@ body.istst-logged-in #header-wrapper {
 }
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Hero slider transitions */
@@ -115,7 +288,7 @@ body.istst-logged-in #header-wrapper {
   transform: translateX(0);
 }
 
-/* Number counter (used on future stats sections) */
+/* Number counter */
 .counter-value {
   font-variant-numeric: tabular-nums;
 }
@@ -140,21 +313,20 @@ body.istst-logged-in #header-wrapper {
   100% { transform: translateX(-100%); }
 }
 
-/* Lightbox for the Gallery page (Task 2) */
+/* Lightbox for the Gallery page */
 .istst-lightbox {
   transition: opacity 0.25s ease;
 }
 
-/*
- * Re-skin Drupal core/Webform's default form markup to match the
- * site's modern minimalist look, scoped to .istst-webform-wrapper so
- * it never touches Drupal's own admin forms elsewhere.
- */
+/* ==========================================================================
+   WEBFORM STYLING
+   ========================================================================== */
+
 .istst-webform-wrapper label {
   display: block;
   font-weight: 600;
   font-size: 0.875rem;
-  color: #0F172A; /* text-dark */
+  color: #0F172A;
   margin-bottom: 0.375rem;
 }
 
@@ -184,7 +356,7 @@ body.istst-logged-in #header-wrapper {
 .istst-webform-wrapper textarea:focus,
 .istst-webform-wrapper select:focus {
   outline: none;
-  border-color: #3AA6B9; /* secondary */
+  border-color: #3AA6B9;
   box-shadow: 0 0 0 3px rgba(58, 166, 185, 0.15);
 }
 
@@ -193,15 +365,6 @@ body.istst-logged-in #header-wrapper {
   resize: vertical;
 }
 
-/*
- * The Telephone element's "international" widget (intl-tel-input,
- * the .iti wrapper you can see in the DOM) absolutely-positions a
- * flag + dial-code selector inside the input's own box. Our generic
- * input padding above doesn't reserve room for that, so the flag
- * sits on top of the typed/placeholder digits. Give this specific
- * input enough left padding to clear the flag box, and make sure
- * the .iti wrapper itself doesn't fight our width:100% rule.
- */
 .istst-webform-wrapper .iti {
   width: 100%;
 }
@@ -224,7 +387,7 @@ body.istst-logged-in #header-wrapper {
 .istst-webform-wrapper fieldset legend {
   font-weight: 700;
   font-size: 0.9375rem;
-  color: #0F4D61; /* primary */
+  color: #0F4D61;
   padding: 0 0.5rem;
 }
 
@@ -240,7 +403,7 @@ body.istst-logged-in #header-wrapper {
 .istst-webform-wrapper .webform-submit,
 .istst-webform-wrapper input[type="submit"] {
   width: 100%;
-  background-color: #0F4D61; /* primary */
+  background-color: #0F4D61;
   color: #ffffff;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -252,21 +415,13 @@ body.istst-logged-in #header-wrapper {
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
+
 .istst-webform-wrapper .webform-submit:hover,
 .istst-webform-wrapper input[type="submit"]:hover {
-  background-color: #2997AA; /* accent */
+  background-color: #2997AA;
   transform: translateY(-1px);
 }
 
-.istst-webform-wrapper .webform-message--error,
-.istst-webform-wrapper .messages--error {
-  border-radius: 0.75rem;
-  padding: 1rem;
-  font-size: 0.875rem;
-}
-
-/* Two-column layout for composite sub-fields (Name, Address) on
-   larger screens; single column on mobile by default. */
 @media (min-width: 640px) {
   .istst-webform-wrapper .webform-composite .form-item {
     display: inline-block;
@@ -280,7 +435,6 @@ body.istst-logged-in #header-wrapper {
    ENHANCED COMPACT FORM LAYOUT
    ========================================================================== */
 
-/* Modern Grid Layout for Desktop */
 @media (min-width: 768px) {
   .webform-submission-member-registration-form {
     display: grid;
@@ -288,16 +442,14 @@ body.istst-logged-in #header-wrapper {
     gap: 1rem 1.25rem;
   }
 
-  /* Elements that should span full width */
   .webform-submission-member-registration-form > .form-item,
   .webform-submission-member-registration-form > .webform-composite,
   .webform-submission-member-registration-form > fieldset,
   .webform-submission-member-registration-form > .form-actions {
     grid-column: span 2;
-    margin-bottom: 0; /* Let grid gap handle spacing */
+    margin-bottom: 0;
   }
 
-  /* Specific elements to shrink to half width */
   .webform-submission-member-registration-form .form-item-date-of-birth,
   .webform-submission-member-registration-form .form-item-qualification,
   .webform-submission-member-registration-form .form-item-mci-regn-no,
@@ -308,7 +460,6 @@ body.istst-logged-in #header-wrapper {
   }
 }
 
-/* Adjust composite spacing using Grid */
 .istst-webform-wrapper .webform-composite .form-item {
   width: 100%;
   margin-right: 0;
@@ -323,15 +474,12 @@ body.istst-logged-in #header-wrapper {
     gap: 1rem 1.25rem;
   }
 
-  /* Address lines that need full width within the composite grid.
-     Notice country is NOT here, so it spans 1 column next to postal code */
   .webform-type-webform-address .form-item-address-address,
   .webform-type-webform-address .form-item-address-address-2 {
     grid-column: span 2;
   }
 }
 
-/* Make Fieldsets look like cards (Name, Address, Sex, Proposed By, etc.) */
 .istst-webform-wrapper fieldset {
   padding: 1.25rem 1rem;
   margin-top: 0.5rem;
@@ -339,23 +487,22 @@ body.istst-logged-in #header-wrapper {
   border: 1px solid #E5E7EB;
   border-radius: 1rem;
 }
+
 .istst-webform-wrapper fieldset legend {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #0F4D61; /* Matches primary theme color */
+  color: #0F4D61;
   padding: 0 0.5rem;
 }
 
-/* Make inputs look a bit sharper */
 .istst-webform-wrapper input::placeholder,
 .istst-webform-wrapper textarea::placeholder {
   color: #9CA3AF;
   opacity: 1;
 }
 
-/* Override Drupal's default one-column stacking */
 .istst-webform-wrapper .js-webform-radios {
   display: flex !important;
   flex-direction: row !important;
@@ -365,7 +512,6 @@ body.istst-logged-in #header-wrapper {
   padding-top: 0.25rem;
 }
 
-/* Align the individual radio container */
 .istst-webform-wrapper .form-type-radio {
   display: flex !important;
   align-items: center;
@@ -373,7 +519,6 @@ body.istst-logged-in #header-wrapper {
   margin-top: 0 !important;
 }
 
-/* Ensure the circular radio input doesn't stretch and has spacing */
 .istst-webform-wrapper .form-type-radio input[type="radio"] {
   width: auto !important;
   margin-right: 0.5rem;
@@ -381,7 +526,6 @@ body.istst-logged-in #header-wrapper {
   cursor: pointer;
 }
 
-/* Reset the label inside the radio button */
 .istst-webform-wrapper .form-type-radio label {
   margin-bottom: 0;
   font-weight: 500;

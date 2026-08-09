@@ -23,76 +23,130 @@ elements: |-
     '#first__placeholder': 'First Name *'
     '#first__title_display': invisible
     '#first__required': true
+    '#first__required_error': 'First name is required.'
+    '#first__pattern': '^[A-Za-z.\s-]+$'
+    '#first__pattern_error': 'First name can only contain letters, spaces, hyphens, and periods.'
     '#middle__title': 'Middle Name'
     '#middle__placeholder': 'Middle Name'
     '#middle__title_display': invisible
+    '#middle__pattern': '^[A-Za-z.\s-]+$'
+    '#middle__pattern_error': 'Middle name can only contain letters, spaces, hyphens, and periods.'
     '#last__title': 'Last Name'
     '#last__placeholder': 'Last Name *'
     '#last__title_display': invisible
     '#last__required': true
+    '#last__required_error': 'Last name is required.'
+    '#last__pattern': '^[A-Za-z.\s-]+$'
+    '#last__pattern_error': 'Last name can only contain letters, spaces, hyphens, and periods.'
     '#suffix__access': false
     '#degree__access': false
+    '#required': true
+    '#required_error': 'Please enter your name.'
   sex:
     '#type': radios
     '#title': Sex
     '#options': sex
+    '#required': true
+    '#required_error': 'Please select your sex.'
   date_of_birth:
     '#type': date
     '#title': 'Date of Birth'
     '#title_display': invisible
     '#attributes':
       placeholder: 'Date of Birth *'
+    '#required': true
+    '#required_error': 'Date of birth is required.'
   qualification:
     '#type': textfield
     '#title': Qualification
     '#title_display': invisible
-    '#placeholder': 'Qualification'
+    '#placeholder': Qualification
+    '#required': true
+    '#required_error': 'Please enter your qualification (e.g. MS, MD, DNB).'
+    '#pattern': '^[A-Za-z0-9,./&\s-]+$'
+    '#pattern_error': 'Qualification can only contain letters, numbers, commas, slashes, ampersands, and hyphens.'
+    '#maxlength': 255
   mci_regn_no:
     '#type': textfield
     '#title': 'MCI/State Medical Council Regn. No.'
     '#title_display': invisible
     '#placeholder': 'MCI/State Medical Council Regn. No.'
+    '#required': true
+    '#required_error': 'Please enter your MCI/State Medical Council Registration Number.'
+    '#pattern': '^[A-Za-z0-9/\s-]+$'
+    '#pattern_error': 'Registration number can only contain letters, numbers, slashes, and hyphens.'
+    '#maxlength': 64
   present_position:
     '#type': textfield
     '#title': 'Present Position'
     '#title_display': invisible
     '#placeholder': 'Present Position'
+    '#required': true
+    '#required_error': 'Please enter your present position.'
+    '#pattern': '^[A-Za-z0-9,.&\s-]+$'
+    '#pattern_error': 'Present position can only contain letters, numbers, commas, periods, ampersands, and hyphens.'
+    '#maxlength': 255
   address:
     '#type': webform_address
     '#title': Address
     '#address__title_display': invisible
     '#address__placeholder': Street
+    '#address__required': true
+    '#address__required_error': 'Street address is required.'
+    '#address__pattern': '^[^<>]+$'
+    '#address__pattern_error': 'Address cannot contain < or > characters.'
     '#address_2__title_display': invisible
     '#address_2__placeholder': 'Unit / Apt / Building'
+    '#address_2__pattern': '^[^<>]+$'
+    '#address_2__pattern_error': 'Address cannot contain < or > characters.'
     '#city__title_display': invisible
-    '#city__placeholder': 'City/Town'
+    '#city__placeholder': City/Town
+    '#city__required': true
+    '#city__required_error': 'City/Town is required.'
+    '#city__pattern': '^[A-Za-z.\s-]+$'
+    '#city__pattern_error': 'City/Town can only contain letters, spaces, hyphens, and periods.'
     '#state_province__type': textfield
     '#state_province__title_display': invisible
-    '#state_province__placeholder': 'State/Province'
+    '#state_province__placeholder': State/Province
+    '#state_province__required': true
+    '#state_province__required_error': 'State/Province is required.'
+    '#state_province__pattern': '^[A-Za-z.\s-]+$'
+    '#state_province__pattern_error': 'State/Province can only contain letters, spaces, hyphens, and periods.'
     '#postal_code__title_display': invisible
     '#postal_code__placeholder': 'ZIP/Postal Code'
+    '#postal_code__required': true
+    '#postal_code__required_error': 'Postal code is required.'
+    '#postal_code__pattern': '^[A-Za-z0-9\s-]{3,10}$'
+    '#postal_code__pattern_error': 'Please enter a valid postal code (3-10 letters/numbers).'
     '#country__title_display': invisible
+    '#country__required': true
+    '#country__required_error': 'Country is required.'
     '#default_value':
       country: India
+    '#required': true
   phone:
     '#type': tel
     '#title': Phone
     '#title_display': invisible
-    '#placeholder': 'Phone Number'
-    '#international': true
-    '#international_initial_country': IN
-    '#international_preferred_countries':
-      - IN
+    '#placeholder': 'Mobile No. '
+    '#required_error': 'Please enter a phone number.'
   email:
     '#type': email
     '#title': Email
     '#title_display': invisible
     '#placeholder': 'Email Address'
+    '#required': true
+    '#required_error': 'Please enter a valid email address.'
   membership_fee_details:
     '#type': textarea
     '#title': 'Life Membership Fee'
     '#title_display': invisible
     '#placeholder': 'Life Membership Fee details (Cash/Cheque/DD/NEFT)'
+    '#required': true
+    '#required_error': 'Please provide payment/transaction details.'
+    '#pattern': '^[^<>]+$'
+    '#pattern_error': 'This field cannot contain < or > characters.'
+    '#maxlength': 500
   proposed_by_wrapper:
     '#type': fieldset
     '#title': 'Proposed By'
@@ -100,17 +154,29 @@ elements: |-
       '#type': textfield
       '#title': Name
       '#title_display': invisible
-      '#placeholder': 'Name'
+      '#placeholder': Name
+      '#required': true
+      '#required_error': 'Proposer name is required.'
+      '#pattern': '^[A-Za-z.\s-]+$'
+      '#pattern_error': 'Name can only contain letters, spaces, hyphens, and periods.'
     proposed_by_position:
       '#type': textfield
       '#title': Position
       '#title_display': invisible
-      '#placeholder': 'Position'
+      '#placeholder': Position
+      '#required': true
+      '#required_error': 'Proposer position is required.'
+      '#pattern': '^[A-Za-z0-9,.&\s-]+$'
+      '#pattern_error': 'Position can only contain letters, numbers, commas, periods, ampersands, and hyphens.'
     proposed_by_affiliation:
       '#type': textfield
       '#title': Affiliation
       '#title_display': invisible
-      '#placeholder': 'Affiliation'
+      '#placeholder': Affiliation
+      '#required': true
+      '#required_error': 'Proposer affiliation is required.'
+      '#pattern': '^[A-Za-z0-9,.&()\s-]+$'
+      '#pattern_error': 'Affiliation can only contain letters, numbers, commas, periods, ampersands, parentheses, and hyphens.'
   seconded_by_wrapper:
     '#type': fieldset
     '#title': 'Seconded By'
@@ -118,17 +184,29 @@ elements: |-
       '#type': textfield
       '#title': Name
       '#title_display': invisible
-      '#placeholder': 'Name'
+      '#placeholder': Name
+      '#required': true
+      '#required_error': 'Seconder name is required.'
+      '#pattern': '^[A-Za-z.\s-]+$'
+      '#pattern_error': 'Name can only contain letters, spaces, hyphens, and periods.'
     seconded_by_position:
       '#type': textfield
       '#title': Position
       '#title_display': invisible
-      '#placeholder': 'Position'
+      '#placeholder': Position
+      '#required': true
+      '#required_error': 'Seconder position is required.'
+      '#pattern': '^[A-Za-z0-9,.&\s-]+$'
+      '#pattern_error': 'Position can only contain letters, numbers, commas, periods, ampersands, and hyphens.'
     seconded_by_affiliation:
       '#type': textfield
       '#title': Affiliation
       '#title_display': invisible
-      '#placeholder': 'Affiliation'
+      '#placeholder': Affiliation
+      '#required': true
+      '#required_error': 'Seconder affiliation is required.'
+      '#pattern': '^[A-Za-z0-9,.&()\s-]+$'
+      '#pattern_error': 'Affiliation can only contain letters, numbers, commas, periods, ampersands, parentheses, and hyphens.'
 css: ''
 javascript: ''
 settings:
@@ -141,7 +219,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
@@ -159,7 +237,7 @@ settings:
   form_disable_back: false
   form_submit_back: false
   form_disable_autocomplete: false
-  form_novalidate: false
+  form_novalidate: true
   form_disable_inline_errors: false
   form_required: false
   form_autofocus: false
@@ -236,8 +314,8 @@ settings:
   draft_pending_multiple_message: ''
   confirmation_type: page
   confirmation_url: ''
-  confirmation_title: ''
-  confirmation_message: ''
+  confirmation_title: 'Registration Successfull.'
+  confirmation_message: '<p>We will get back to you soon.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
