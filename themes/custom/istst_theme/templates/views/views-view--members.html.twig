@@ -14,28 +14,21 @@
  *   attachment_after, more, pager, footer, feed_icons.
  */
 #}
-<section class="pt-32 md:pt-40 pb-12 md:pb-20 bg-lightbg">
+<section class="pt-32 md:pt-40 pb-12 md:pb-20 bg-lightbg min-h-screen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     {# Page Title #}
-    <div class="mb-8">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Members List</h1>
+    <div class="mb-6 md:mb-8">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Members List</h1>
     </div>
 
     {# Main Content Card #}
-    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8 lg:p-10 border border-gray-100">
+    <div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 md:p-8 lg:p-10 border border-gray-100">
 
-      {#
-        NOTE: {{ title }} is intentionally not used here -- Views
-        Page displays don't reliably populate this template variable
-        (title is instead handled by Drupal core's "Page title"
-        block, placed in the Content region above this view; see
-        style.css "PAGE TITLE BLOCK" section for its styling).
-      #}
       {{ header }}
 
       {% if exposed %}
-        <div class="istst-members-filters mb-8">
+        <div class="istst-members-filters mb-6 md:mb-8">
           {{ exposed }}
         </div>
       {% endif %}
@@ -43,18 +36,24 @@
       {{ attachment_before }}
 
       {% if rows %}
-        <div class="istst-members-table-wrap overflow-hidden rounded-lg border border-gray-100">
+        {#
+          ADDED: [&_table]:min-w-[600px] [&_table]:w-full
+          This reaches into the {{ rows }} variable and forces the Drupal-generated
+          <table> to be at least 600px wide. This prevents the columns from squishing
+          and properly triggers the overflow-x-auto scroll on mobile devices.
+        #}
+        <div class="istst-members-table-wrap overflow-x-auto w-full rounded-lg border border-gray-100 [&_table]:min-w-[600px] [&_table]:w-full">
           {{ rows }}
         </div>
       {% elseif empty %}
-        <div class="text-center text-textgray py-16">{{ empty }}</div>
+        <div class="text-center text-textgray py-12 md:py-16">{{ empty }}</div>
       {% endif %}
 
       {{ attachment_after }}
       {{ more }}
 
       {% if pager %}
-        <div class="istst-members-pager mt-10">
+        <div class="istst-members-pager mt-8 md:mt-10 overflow-x-auto">
           {{ pager }}
         </div>
       {% endif %}
