@@ -1,0 +1,47 @@
+uuid: e4e49319-4601-4700-8166-88bbb62c7eea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.member.field_membership_no
+    - field.field.node.member.field_membership_type
+    - node.type.member
+  module:
+    - entity_print
+    - options
+    - user
+third_party_settings:
+  entity_print:
+    pdf_label: 'View PDF'
+    epub_label: 'View EPub'
+    word_docx_label: 'View Word Document'
+id: node.member.default
+targetEntityType: node
+bundle: member
+mode: default
+content:
+  field_membership_no:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_membership_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

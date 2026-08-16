@@ -379,6 +379,41 @@ body.istst-logged-in #header-wrapper {
   box-shadow: 0 0 0 3px rgba(58, 166, 185, 0.15);
 }
 
+/*
+ * Invalid-field state -- Drupal adds an ".error" class (and
+ * aria-invalid="true") to any field that failed validation on
+ * submit. We never styled that state before, so failed fields
+ * looked identical to normal ones apart from the message list at
+ * the top of the page. This highlights the specific field(s) too.
+ */
+.istst-webform-wrapper input.error,
+.istst-webform-wrapper textarea.error,
+.istst-webform-wrapper select.error,
+.istst-webform-wrapper input[aria-invalid="true"],
+.istst-webform-wrapper textarea[aria-invalid="true"],
+.istst-webform-wrapper select[aria-invalid="true"] {
+  border-color: #DC2626;
+  background-color: #FEF2F2;
+}
+
+.istst-webform-wrapper input.error:focus,
+.istst-webform-wrapper textarea.error:focus,
+.istst-webform-wrapper select.error:focus,
+.istst-webform-wrapper input[aria-invalid="true"]:focus,
+.istst-webform-wrapper textarea[aria-invalid="true"]:focus,
+.istst-webform-wrapper select[aria-invalid="true"]:focus {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* The .iti wrapper hides the underlying input's own border, so the
+   Phone field's error state needs to target the wrapper itself. */
+.istst-webform-wrapper .iti:has(input.error),
+.istst-webform-wrapper .iti:has(input[aria-invalid="true"]) {
+  border-radius: 0.75rem;
+  box-shadow: 0 0 0 1px #DC2626;
+}
+
 .istst-webform-wrapper textarea {
   min-height: 5rem;
   resize: vertical;
@@ -550,3 +585,197 @@ body.istst-logged-in #header-wrapper {
   font-weight: 500;
   cursor: pointer;
 }
+/* ==========================================================================
+   MEMBERS LIST VIEW STYLING (view id: members, display: page_1)
+   Targets Drupal core Views' default markup/classes directly -- no
+   custom Views templates needed for the form/table/pager themselves,
+   only the outer wrapper (views-view--members.html.twig).
+   ========================================================================== */
+
+/* --- Exposed filters (Name / Membership No. search) --- */
+.istst-members-filters #views-exposed-form-members-page-1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  padding: 1rem 1.25rem;
+  background-color: #F9FAFB;
+  border-radius: 1rem;
+  border: 1px solid #E5E7EB;
+}
+
+.istst-members-filters .form-item {
+  flex: 1 1 220px;
+  min-width: 180px;
+  margin: 0;
+}
+
+.istst-members-filters label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #454F5E;
+  margin-bottom: 0.375rem;
+}
+
+.istst-members-filters input[type="text"] {
+  width: 100%;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9375rem;
+  background-color: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.istst-members-filters input[type="text"]:focus {
+  outline: none;
+  border-color: #3AA6B9;
+  box-shadow: 0 0 0 3px rgba(58, 166, 185, 0.15);
+}
+
+.istst-members-filters .form-actions {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.istst-members-filters input[type="submit"] {
+  background-color: #0F4D61;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.istst-members-filters input[type="submit"]:hover {
+  background-color: #2997AA;
+}
+
+/* --- Table --- */
+.istst-members-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #E5E7EB;
+  border-radius: 1rem;
+}
+
+.istst-members-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  min-width: 480px; /* keeps columns readable; wrapper scrolls on mobile */
+}
+
+.istst-members-table-wrap thead th {
+  background-color: #E9F8F9;
+  color: #0F4D61;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-align: left;
+  padding: 0.85rem 1.25rem;
+  white-space: nowrap;
+}
+
+.istst-members-table-wrap tbody td {
+  padding: 0.85rem 1.25rem;
+  color: #454F5E;
+  border-top: 1px solid #F1F5F9;
+}
+
+.istst-members-table-wrap tbody tr:hover {
+  background-color: #FAFAFA;
+}
+
+.istst-members-table-wrap tbody tr:nth-child(even) {
+  background-color: #FCFCFD;
+}
+.istst-members-table-wrap tbody tr:nth-child(even):hover {
+  background-color: #F5F5F5;
+}
+
+/* --- Pager --- */
+.istst-members-pager .pager__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.375rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.istst-members-pager .pager__item {
+  margin: 0;
+}
+
+.istst-members-pager .pager__item a,
+.istst-members-pager .pager__item.is-active a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0F4D61;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.istst-members-pager .pager__item a:hover {
+  background-color: #E9F8F9;
+}
+
+.istst-members-pager .pager__item.is-active a {
+  background-color: #0F4D61;
+  color: #ffffff;
+}
+
+.istst-members-pager .pager__item--ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  color: #9CA3AF;
+}
+
+/* Mobile: tighten padding and hide the "Last »" full label in favor
+   of a compact icon-only feel via smaller font, keeping the link
+   functional (text stays for accessibility). */
+@media (max-width: 640px) {
+  .istst-members-pager .pager__item a {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.4rem;
+    font-size: 0.8125rem;
+  }
+}
+.page-title {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.875rem;
+  color: #0F172A;
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+    padding-top: 2.5rem;
+  }
+}
+
