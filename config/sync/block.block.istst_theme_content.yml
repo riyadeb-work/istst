@@ -11,7 +11,7 @@ _core:
 id: istst_theme_content
 theme: istst_theme
 region: content
-weight: -6
+weight: -5
 provider: null
 plugin: system_main_block
 settings:

@@ -288,6 +288,25 @@ body.istst-logged-in #header-wrapper {
   transform: translateX(0);
 }
 
+/*
+ * Belt-and-suspenders fix for the mobile drawer: force full height,
+ * solid background, and a z-index well above the hero slider's
+ * .slide.active (z-index:10) and the fixed header (z-50), using
+ * plain CSS rather than relying solely on Tailwind's w-64/z-50
+ * utility classes resolving correctly in every context. This was
+ * previously in place but was dropped during the toast-notification
+ * styling merge -- re-added here.
+ */
+#mobile-menu {
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 9999;
+}
+
+#menu-overlay {
+  z-index: 9998;
+}
+
 /* Number counter */
 .counter-value {
   font-variant-numeric: tabular-nums;

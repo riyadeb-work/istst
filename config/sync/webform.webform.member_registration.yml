@@ -51,7 +51,6 @@ elements: |-
   date_of_birth:
     '#type': date
     '#title': 'Date of Birth'
-    '#title_display': invisible
     '#attributes':
       placeholder: 'Date of Birth *'
     '#required': true
@@ -59,7 +58,6 @@ elements: |-
   qualification:
     '#type': textfield
     '#title': Qualification
-    '#title_display': invisible
     '#placeholder': Qualification
     '#required': true
     '#required_error': 'Please enter your qualification (e.g. MS, MD, DNB).'
@@ -69,7 +67,6 @@ elements: |-
   mci_regn_no:
     '#type': textfield
     '#title': 'MCI/State Medical Council Regn. No.'
-    '#title_display': invisible
     '#placeholder': 'MCI/State Medical Council Regn. No.'
     '#required': true
     '#required_error': 'Please enter your MCI/State Medical Council Registration Number.'
@@ -79,7 +76,6 @@ elements: |-
   present_position:
     '#type': textfield
     '#title': 'Present Position'
-    '#title_display': invisible
     '#placeholder': 'Present Position'
     '#required': true
     '#required_error': 'Please enter your present position.'
@@ -89,58 +85,57 @@ elements: |-
   address:
     '#type': webform_address
     '#title': Address
-    '#address__title_display': invisible
+    '#title_display': before
+    '#required': true
+    '#default_value':
+      country: India
     '#address__placeholder': Street
+    '#address__title_display': before
     '#address__required': true
+    '#address_2__placeholder': 'Unit / Apt / Building'
+    '#address_2__title_display': before
+    '#city__placeholder': City/Town
+    '#city__title_display': before
+    '#city__required': true
+    '#state_province__placeholder': State/Province
+    '#state_province__title_display': before
+    '#state_province__required': true
+    '#state_province__type': textfield
+    '#postal_code__placeholder': 'ZIP/Postal Code'
+    '#postal_code__title_display': before
+    '#postal_code__required': true
+    '#country__title_display': before
+    '#country__required': true
     '#address__required_error': 'Street address is required.'
     '#address__pattern': '^[^<>]+$'
     '#address__pattern_error': 'Address cannot contain < or > characters.'
-    '#address_2__title_display': invisible
-    '#address_2__placeholder': 'Unit / Apt / Building'
     '#address_2__pattern': '^[^<>]+$'
     '#address_2__pattern_error': 'Address cannot contain < or > characters.'
-    '#city__title_display': invisible
-    '#city__placeholder': City/Town
-    '#city__required': true
     '#city__required_error': 'City/Town is required.'
     '#city__pattern': '^[A-Za-z.\s-]+$'
     '#city__pattern_error': 'City/Town can only contain letters, spaces, hyphens, and periods.'
-    '#state_province__type': textfield
-    '#state_province__title_display': invisible
-    '#state_province__placeholder': State/Province
-    '#state_province__required': true
     '#state_province__required_error': 'State/Province is required.'
     '#state_province__pattern': '^[A-Za-z.\s-]+$'
     '#state_province__pattern_error': 'State/Province can only contain letters, spaces, hyphens, and periods.'
-    '#postal_code__title_display': invisible
-    '#postal_code__placeholder': 'ZIP/Postal Code'
-    '#postal_code__required': true
     '#postal_code__required_error': 'Postal code is required.'
     '#postal_code__pattern': '^[A-Za-z0-9\s-]{3,10}$'
     '#postal_code__pattern_error': 'Please enter a valid postal code (3-10 letters/numbers).'
-    '#country__title_display': invisible
-    '#country__required': true
     '#country__required_error': 'Country is required.'
-    '#default_value':
-      country: India
-    '#required': true
   phone:
     '#type': tel
     '#title': Phone
-    '#title_display': invisible
     '#placeholder': 'Mobile No. '
     '#required_error': 'Please enter a phone number.'
+    '#required': true
   email:
     '#type': email
     '#title': Email
-    '#title_display': invisible
     '#placeholder': 'Email Address'
     '#required': true
     '#required_error': 'Please enter a valid email address.'
   membership_fee_details:
     '#type': textarea
     '#title': 'Life Membership Fee'
-    '#title_display': invisible
     '#placeholder': 'Life Membership Fee details (Cash/Cheque/DD/NEFT)'
     '#required': true
     '#required_error': 'Please provide payment/transaction details.'
@@ -153,7 +148,6 @@ elements: |-
     proposed_by_name:
       '#type': textfield
       '#title': Name
-      '#title_display': invisible
       '#placeholder': Name
       '#required': true
       '#required_error': 'Proposer name is required.'
@@ -162,16 +156,13 @@ elements: |-
     proposed_by_position:
       '#type': textfield
       '#title': Position
-      '#title_display': invisible
       '#placeholder': Position
-      '#required': true
       '#required_error': 'Proposer position is required.'
       '#pattern': '^[A-Za-z0-9,.&\s-]+$'
       '#pattern_error': 'Position can only contain letters, numbers, commas, periods, ampersands, and hyphens.'
     proposed_by_affiliation:
       '#type': textfield
       '#title': Affiliation
-      '#title_display': invisible
       '#placeholder': Affiliation
       '#required': true
       '#required_error': 'Proposer affiliation is required.'
@@ -183,7 +174,6 @@ elements: |-
     seconded_by_name:
       '#type': textfield
       '#title': Name
-      '#title_display': invisible
       '#placeholder': Name
       '#required': true
       '#required_error': 'Seconder name is required.'
@@ -192,16 +182,13 @@ elements: |-
     seconded_by_position:
       '#type': textfield
       '#title': Position
-      '#title_display': invisible
       '#placeholder': Position
-      '#required': true
       '#required_error': 'Seconder position is required.'
       '#pattern': '^[A-Za-z0-9,.&\s-]+$'
       '#pattern_error': 'Position can only contain letters, numbers, commas, periods, ampersands, and hyphens.'
     seconded_by_affiliation:
       '#type': textfield
       '#title': Affiliation
-      '#title_display': invisible
       '#placeholder': Affiliation
       '#required': true
       '#required_error': 'Seconder affiliation is required.'
@@ -312,10 +299,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: page
+  confirmation_type: inline
   confirmation_url: ''
-  confirmation_title: 'Registration Successfull.'
-  confirmation_message: '<p>We will get back to you soon.</p>'
+  confirmation_title: 'ISTST Registration Successfull.'
+  confirmation_message: '<p>Thank you for submitting your registration request. We have received your application and will review the details shortly. Once the review is complete, we will contact you with further details.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -391,5 +378,119 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  admin_email:
+    id: email
+    handler_id: admin_email
+    label: 'Admin Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: _default
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: contact@meghive.com
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: ISTST
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'ISTST Membership Application Request'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: false
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
+  user_email:
+    id: email
+    handler_id: user_email
+    label: 'User Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: ISTST
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'ISTST Mempership Request Under Review'
+      body: '<p class="isSelectedEnd"><span>Hello,</span></p><p class="isSelectedEnd"><span>Thank you for submitting your membership request.</span></p><p class="isSelectedEnd"><span>Your registration request has been successfully received and is currently under review. We are carefully reviewing the information provided and will contact you once the review is complete with further details regarding your membership.</span></p><p class="isSelectedEnd">&nbsp;</p><p class="isSelectedEnd"><span>Thank you for your patience and interest.</span></p><p><span>Regards,</span><br><span class="text-token-text-primary cursor-text rounded-sm" data-placeholder-token="true">ISTST,</span><br><span class="text-token-text-primary cursor-text rounded-sm" data-placeholder-token="true">support@istst.org</span></p>'
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
+  user_form_data_email:
+    id: email
+    handler_id: user_form_data_email
+    label: 'User Form Data Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: ISTST
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'ISTST Membership Submitted Data '
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: false
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
 variants: {  }
